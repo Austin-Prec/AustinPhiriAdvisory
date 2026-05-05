@@ -104,7 +104,7 @@ export default function Home() {
         <div className="container-main px-6 lg:px-20">
           <div className="max-w-3xl">
             <h2 className="font-garamond text-navy-500 text-2xl md:text-3xl font-bold mb-6">
-              About Austin Phiri Advisory
+              About Austin Phiri Advisory Limited
             </h2>
             <p className="font-arial text-gray-600 text-base leading-relaxed mb-6">
               Austin Phiri Advisory Limited is a registered Malawian consulting firm
