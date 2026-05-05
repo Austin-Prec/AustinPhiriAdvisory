@@ -33,9 +33,21 @@ const credentials = [
 export default function Home() {
   return (
     <div>
-      {/* Hero */}
-      <section className="bg-navy-500 pt-28 pb-20 md:pt-36 md:pb-28 lg:pt-44 lg:pb-36">
-        <div className="container-main px-6 lg:px-20">
+      {/* Hero Section with Background Image */}
+      <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 lg:pt-44 lg:pb-36">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url("/landing-page-bg.jpg")',
+          }}
+        >
+          {/* Dark Overlay - keeps text readable */}
+          <div className="absolute inset-0 bg-navy-500/85"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative container-main px-6 lg:px-20 z-10">
           <div className="max-w-4xl">
             <h1 className="font-garamond text-white text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-snug mb-8">
               Institutions do not fail because they lack governance frameworks. They
