@@ -36,14 +36,10 @@ export default function Contact() {
     setError('');
 
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-      const res = await fetch(`${supabaseUrl}/functions/v1/contact`, {
+      const response = await fetch('https://formspree.io/f/YOUR-FORM-ID', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${supabaseAnonKey}`,
         },
         body: JSON.stringify({
           fullName: formData.fullName,
@@ -55,11 +51,19 @@ export default function Contact() {
         }),
       });
 
-      if (!res.ok) {
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({
+          fullName: '',
+          organisation: '',
+          email: '',
+          phone: '',
+          enquiryType: '',
+          message: '',
+        });
+      } else {
         throw new Error('Submission failed');
       }
-
-      setSubmitted(true);
     } catch {
       setError('Something went wrong. Please try again or email us directly.');
     } finally {
@@ -103,7 +107,7 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block font-arial text-navy-500 text-sm font-semibold mb-2">
-                        Full Name
+                        Full Name *
                       </label>
                       <input
                         type="text"
@@ -131,7 +135,7 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block font-arial text-navy-500 text-sm font-semibold mb-2">
-                        Email Address
+                        Email Address *
                       </label>
                       <input
                         type="email"
@@ -158,7 +162,7 @@ export default function Contact() {
 
                   <div>
                     <label className="block font-arial text-navy-500 text-sm font-semibold mb-2">
-                      Nature of Enquiry
+                      Nature of Enquiry *
                     </label>
                     <select
                       name="enquiryType"
@@ -178,7 +182,7 @@ export default function Contact() {
 
                   <div>
                     <label className="block font-arial text-navy-500 text-sm font-semibold mb-2">
-                      Message
+                      Message *
                     </label>
                     <textarea
                       name="message"
@@ -218,10 +222,10 @@ export default function Contact() {
                       Email
                     </p>
                     <a
-                      href="mailto:austinpphiri@gmail.com"
+                      href="mailto:austinphiri@gmail.com"
                       className="font-arial text-gray-600 text-sm hover:text-crimson-400 transition-colors duration-200"
                     >
-                      austinpphiri@gmail.com
+                      austinphiri@gmail.com
                     </a>
                   </div>
                 </div>
