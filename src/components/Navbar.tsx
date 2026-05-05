@@ -42,7 +42,7 @@ export default function Navbar() {
                             </Link>
                         ))}
                         <Link
-                            to="/book"
+                            to="/contact"
                             className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
                         >
                             Book Consultation
@@ -74,7 +74,7 @@ export default function Navbar() {
                             </Link>
                         ))}
                         <Link
-                            to="/book"
+                            to="/contact"
                             onClick={() => setMobileOpen(false)}
                             className="bg-blue-600 text-white px-4 py-2 rounded-lg text-center hover:bg-blue-700 transition"
                         >
