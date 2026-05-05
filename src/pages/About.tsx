@@ -13,6 +13,7 @@ const certifications = [
 
 export default function About() {
   return (
+    
     <div>
       {/* Header */}
       <section className="bg-navy-500 pt-28 pb-16 md:pt-36 md:pb-20">
@@ -30,12 +31,14 @@ export default function About() {
       <section className="bg-white section-padding">
         <div className="container-main px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-            {/* Photo Placeholder */}
-            <div className="lg:col-span-1">
-              <div className="bg-navy-50 aspect-[3/4] flex items-center justify-center border border-navy-100">
-                <User size={64} className="text-navy-200" strokeWidth={1} />
-              </div>
-            </div>
+         {/* Your Photo */}
+<div className="lg:col-span-1">
+  <img
+    src="/Austin-Photo.jpeg"
+    alt="Austin Precious Phiri"
+    className="w-full aspect-[3/4] object-cover rounded-lg shadow-lg"
+  />
+</div>
 
             {/* Bio Text */}
             <div className="lg:col-span-2">
