@@ -1,4 +1,4 @@
-import { Award, MapPin, Briefcase, Calendar } from 'lucide-react';
+import { User, Award, MapPin, Briefcase, Calendar } from 'lucide-react';
 
 const certifications = [
   'Forensic Accounting and Fraud Examination (WVU)',
@@ -20,47 +20,54 @@ export default function About() {
             About
           </h1>
           <p className="font-arial text-navy-100 text-base md:text-lg leading-relaxed max-w-3xl">
-            Governance and forensic finance specialist trusted to design control systems 
-            for institutions managing donor-funded resources across Southern Africa.
+            The practitioner behind the practice — trusted to protect donor-funded resources across Southern Africa.
           </p>
         </div>
       </section>
 
-      {/* Bio Section */}
+      {/* Biography - WITH AUTHORITY FRAMING */}
       <section className="bg-white section-padding">
         <div className="container-main px-6 lg:px-20">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             
-            {/* Photo */}
+            {/* Your Photo */}
             <div className="lg:col-span-1">
               <img
                 src="/Austin-Photo.jpeg"
                 alt="Austin Precious Phiri"
-                className="w-full rounded-lg shadow-md"
+                className="w-full aspect-[3/4] object-cover rounded-lg shadow-lg"
               />
               
+              {/* Authority Badges */}
               <div className="mt-6 space-y-3">
-                <div className="flex items-center gap-3 text-gray-600">
-                  <Briefcase size={18} className="text-crimson-400" />
-                  <span className="font-arial text-sm">Managing Director</span>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Briefcase size={16} className="text-crimson-400" />
+                  <span>Board-Appointed CFO</span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-600">
-                  <MapPin size={18} className="text-crimson-400" />
-                  <span className="font-arial text-sm">Zomba, Malawi</span>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <MapPin size={16} className="text-crimson-400" />
+                  <span>Southern Africa</span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-600">
-                  <Calendar size={18} className="text-crimson-400" />
-                  <span className="font-arial text-sm">12+ years experience</span>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Calendar size={16} className="text-crimson-400" />
+                  <span>12+ years applied experience</span>
                 </div>
               </div>
             </div>
 
-            {/* Bio Text */}
+            {/* Bio Text - WITH AUTHORITY OPENING */}
             <div className="lg:col-span-2">
-              {/* Authority Quote */}
+              <h2 className="font-garamond text-navy-500 text-2xl md:text-3xl font-bold mb-2">
+                Austin Precious Phiri
+              </h2>
+              <p className="font-arial text-crimson-400 text-sm uppercase tracking-wider font-semibold mb-4">
+                Governance & Forensic Finance Specialist
+              </p>
+              
+              {/* AUTHORITY FRAMING - New opening line */}
               <div className="bg-navy-50 border-l-4 border-crimson-400 p-4 mb-6">
                 <p className="font-arial text-navy-700 text-sm italic leading-relaxed">
-                  "Removing reliance on individual integrity and replacing it with enforceable institutional systems."
+                  Trusted to design control systems for institutions managing donor-funded resources across Southern Africa. His work focuses on removing reliance on individual integrity and replacing it with enforceable institutional systems.
                 </p>
               </div>
 
@@ -73,20 +80,25 @@ export default function About() {
                 <p>
                   He is the Managing Director of Austin Phiri Advisory Limited and
                   Board-Appointed CFO of a national professional association in Malawi.
+                  His practice focuses on designing and implementing structural control
+                  environments for NGOs, professional associations, and development sector
+                  organisations operating in Southern Africa.
                 </p>
                 <p>
-                  He has managed multi-donor portfolios totalling <strong>$300,000+ USD</strong> across
+                  He has managed multi-donor portfolios totalling <strong>$285,000+ USD</strong> across
                   nine international partners with <strong>zero negative audit findings</strong>, and has
-                  documented six forensic finance investigations resulting in institutional
-                  control remediation.
+                  documented six forensic finance investigations resulting in
+                  institutional control remediation.
                 </p>
                 <p>
                   He developed the <strong>Structural Integrity Framework (SIF)</strong> and the
-                  <strong> Forensic Readiness Framework (FRF)</strong> — two practitioner methodologies 
-                  grounded in twelve years of applied experience in African institutional environments.
+                  <strong> Forensic Readiness Framework (FRF)</strong> — two practitioner methodologies for institutional
+                  governance and forensic finance — grounded in twelve years of applied
+                  experience in African institutional environments.
                 </p>
-                <p className="text-gray-400 text-sm pt-2">
-                  Austin Phiri Advisory Limited is registered in Malawi. Registration date: 21 April 2026.
+                <p className="text-gray-500 text-sm">
+                  Austin Phiri Advisory Limited is registered in Malawi. Registration
+                  date: 21 April 2026.
                 </p>
               </div>
             </div>
@@ -94,25 +106,48 @@ export default function About() {
         </div>
       </section>
 
-      {/* Certifications */}
+      {/* Certifications - GROUPED FOR AUTHORITY */}
       <section className="bg-gray-50 section-padding">
         <div className="container-main px-6 lg:px-20">
           <div className="flex items-center gap-3 mb-6">
-            <Award size={24} className="text-crimson-400" />
-            <h3 className="font-garamond text-navy-500 text-xl font-bold">
-              Professional Certifications
+            <Award size={28} className="text-crimson-400" strokeWidth={1.5} />
+            <h3 className="font-garamond text-navy-500 text-2xl font-bold">
+              Selected Professional Training
             </h3>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <p className="font-arial text-gray-500 text-sm mb-6">
+            Continuing professional education across forensic accounting, financial reporting, and strategic leadership.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {certifications.map((cert) => (
-              <div key={cert} className="bg-white border border-gray-200 px-4 py-3">
-                <p className="font-arial text-gray-700 text-sm">{cert}</p>
+              <div
+                key={cert}
+                className="bg-white border border-gray-200 px-5 py-3 hover:border-navy-300 transition-colors duration-300"
+              >
+                <p className="font-arial text-gray-700 text-sm leading-relaxed">
+                  {cert}
+                </p>
               </div>
             ))}
           </div>
-          <p className="font-arial text-gray-400 text-sm mt-4">
-            CFE Candidacy in progress — Association of Certified Fraud Examiners
-          </p>
+          
+          {/* CFE Note */}
+          <div className="mt-4 p-3 bg-navy-50 border border-navy-100 rounded-lg">
+            <p className="font-arial text-navy-600 text-sm">
+              <strong>CFE Candidacy:</strong> Certified Fraud Examiner (in progress) — ACFE
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Registration Info */}
+      <section className="bg-white py-8">
+        <div className="container-main px-6 lg:px-20">
+          <div className="text-center">
+            <p className="font-arial text-gray-400 text-xs">
+              Austin Phiri Advisory Limited | Registered in Malawi | 21 April 2026
+            </p>
+          </div>
         </div>
       </section>
     </div>
