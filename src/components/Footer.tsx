@@ -1,10 +1,38 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Linkedin, Mail, Phone, MapPin, Shield, Award, Users, FileCheck } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="bg-navy-700 text-navy-100">
       <div className="container-main section-padding pb-8">
+        
+        {/* Trust Badges Section - NEW */}
+        <div className="border-b border-navy-600 pb-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <Shield size={28} className="text-gold-200 mx-auto mb-2" strokeWidth={1.2} />
+              <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Registered</p>
+              <p className="font-arial text-white text-sm font-medium">Malawi</p>
+            </div>
+            <div>
+              <Award size={28} className="text-gold-200 mx-auto mb-2" strokeWidth={1.2} />
+              <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Experience</p>
+              <p className="font-arial text-white text-sm font-medium">12+ Years</p>
+            </div>
+            <div>
+              <Users size={28} className="text-gold-200 mx-auto mb-2" strokeWidth={1.2} />
+              <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Donors</p>
+              <p className="font-arial text-white text-sm font-medium">9 International</p>
+            </div>
+            <div>
+              <FileCheck size={28} className="text-gold-200 mx-auto mb-2" strokeWidth={1.2} />
+              <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Audit Findings</p>
+              <p className="font-arial text-white text-sm font-medium">Zero Negative</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
             <h3 className="font-garamond text-white text-xl font-bold mb-4">
@@ -49,10 +77,10 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-gold-200 mt-0.5 shrink-0" />
                 <a
-                  href="mailto:austinpphiri@gmail.com"
+                  href="mailto:austinphiri@gmail.com"
                   className="font-arial text-sm text-navy-200 hover:text-gold-200 transition-colors duration-200"
                 >
-                  austinpphiri@gmail.com
+                  austinphiri@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
