@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Send, Clock, Shield, CheckCircle } from 'lucide-react';
 
 const enquiryTypes = [
   'Governance Architecture',
@@ -36,7 +36,7 @@ export default function Contact() {
     setError('');
 
     try {
-       const response = await fetch('https://formspree.io/f/xjglrvdj', {
+      const response = await fetch('https://formspree.io/f/xjglrvdj', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,32 +73,48 @@ export default function Contact() {
 
   return (
     <div>
-      {/* Header */}
+      {/* Hero Section - Professional Header */}
       <section className="bg-navy-500 pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="container-main px-6 lg:px-20">
-          <h1 className="font-garamond text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Contact
-          </h1>
-          <p className="font-arial text-navy-100 text-base md:text-lg leading-relaxed max-w-3xl">
-            Begin a conversation about your institution's governance and forensic
-            challenges.
-          </p>
+          <div className="max-w-3xl">
+            <div className="inline-block mb-4">
+              <span className="text-crimson-400 font-arial text-xs uppercase tracking-wider font-semibold">Start a Conversation</span>
+            </div>
+            <h1 className="font-garamond text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              Let's Talk
+            </h1>
+            <p className="font-arial text-navy-100 text-base md:text-lg leading-relaxed">
+              Whether you have a specific governance challenge or want to understand 
+              how advisory support could strengthen your institution — start here.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Form and Details */}
+      {/* Main Content */}
       <section className="bg-white section-padding">
         <div className="container-main px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
-            {/* Form */}
+            
+            {/* Form Section */}
             <div className="lg:col-span-3">
+              {/* Reassurance Message - NEW */}
+              <div className="bg-navy-50 border border-navy-100 rounded-lg p-4 mb-6 flex items-center gap-3">
+                <Shield size={20} className="text-crimson-400" />
+                <p className="font-arial text-navy-600 text-sm">
+                  All enquiries are handled directly by the Managing Director. 
+                  Initial consultations focus on understanding your governance risks.
+                </p>
+              </div>
+
               {submitted ? (
-                <div className="bg-navy-50 border border-navy-200 p-8 text-center">
-                  <h3 className="font-garamond text-navy-500 text-xl font-bold mb-3">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
+                  <CheckCircle size={48} className="text-green-500 mx-auto mb-3" />
+                  <h3 className="font-garamond text-green-700 text-xl font-bold mb-2">
                     Enquiry Received
                   </h3>
-                  <p className="font-arial text-gray-600 text-sm leading-relaxed">
-                    Thank you for your enquiry. Austin Phiri Advisory will respond
+                  <p className="font-arial text-green-600 text-sm leading-relaxed">
+                    Thank you for your enquiry. Austin Phiri Advisory will respond 
                     within two business days.
                   </p>
                 </div>
@@ -107,7 +123,7 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block font-arial text-navy-500 text-sm font-semibold mb-2">
-                        Full Name *
+                        Full Name <span className="text-crimson-400">*</span>
                       </label>
                       <input
                         type="text"
@@ -115,7 +131,8 @@ export default function Contact() {
                         value={formData.fullName}
                         onChange={handleChange}
                         required
-                        className="w-full border border-gray-300 px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 transition-colors"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 focus:ring-1 focus:ring-navy-400 transition-all"
+                        placeholder="Austin Phiri"
                       />
                     </div>
                     <div>
@@ -127,7 +144,8 @@ export default function Contact() {
                         name="organisation"
                         value={formData.organisation}
                         onChange={handleChange}
-                        className="w-full border border-gray-300 px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 transition-colors"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 focus:ring-1 focus:ring-navy-400 transition-all"
+                        placeholder="Your organisation name"
                       />
                     </div>
                   </div>
@@ -135,7 +153,7 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block font-arial text-navy-500 text-sm font-semibold mb-2">
-                        Email Address *
+                        Email Address <span className="text-crimson-400">*</span>
                       </label>
                       <input
                         type="email"
@@ -143,7 +161,8 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full border border-gray-300 px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 transition-colors"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 focus:ring-1 focus:ring-navy-400 transition-all"
+                        placeholder="you@organisation.org"
                       />
                     </div>
                     <div>
@@ -155,21 +174,22 @@ export default function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full border border-gray-300 px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 transition-colors"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 focus:ring-1 focus:ring-navy-400 transition-all"
+                        placeholder="+265 888 879 052"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block font-arial text-navy-500 text-sm font-semibold mb-2">
-                      Nature of Enquiry *
+                      Nature of Enquiry <span className="text-crimson-400">*</span>
                     </label>
                     <select
                       name="enquiryType"
                       value={formData.enquiryType}
                       onChange={handleChange}
                       required
-                      className="w-full border border-gray-300 px-4 py-3 font-arial text-sm text-gray-800 bg-white focus:outline-none focus:border-navy-400 transition-colors"
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 font-arial text-sm text-gray-800 bg-white focus:outline-none focus:border-navy-400 focus:ring-1 focus:ring-navy-400 transition-all"
                     >
                       <option value="">Select an enquiry type</option>
                       {enquiryTypes.map((type) => (
@@ -182,89 +202,133 @@ export default function Contact() {
 
                   <div>
                     <label className="block font-arial text-navy-500 text-sm font-semibold mb-2">
-                      Message *
+                      Message <span className="text-crimson-400">*</span>
                     </label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows={6}
-                      className="w-full border border-gray-300 px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 transition-colors resize-vertical"
+                      rows={5}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 font-arial text-sm text-gray-800 focus:outline-none focus:border-navy-400 focus:ring-1 focus:ring-navy-400 transition-all resize-vertical"
+                      placeholder="Briefly describe your governance or forensic challenge..."
                     />
                   </div>
 
                   {error && (
-                    <p className="font-arial text-red-600 text-sm">{error}</p>
+                    <p className="font-arial text-red-600 text-sm bg-red-50 p-3 rounded-lg">{error}</p>
                   )}
+                  
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="btn-primary inline-flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full bg-navy-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-navy-700 transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     <Send size={16} />
                     {submitting ? 'Sending...' : 'Send Enquiry'}
                   </button>
+                  
+                  <p className="font-arial text-gray-400 text-xs text-center mt-4">
+                    Your information is confidential. We do not share data with third parties.
+                  </p>
                 </form>
               )}
             </div>
 
-            {/* Contact Details */}
+            {/* Contact Details - Professional Sidebar */}
             <div className="lg:col-span-2">
-              <h3 className="font-garamond text-navy-500 text-xl font-bold mb-6">
-                Direct Contact
-              </h3>
-              <div className="space-y-5">
-                <div className="flex items-start gap-4">
-                  <Mail size={20} className="text-crimson-400 mt-0.5 shrink-0" strokeWidth={1.5} />
-                  <div>
-                    <p className="font-arial text-navy-500 text-sm font-semibold mb-1">
-                      Email
-                    </p>
-                    <a
-                      href="mailto:austinphiri@gmail.com"
-                      className="font-arial text-gray-600 text-sm hover:text-crimson-400 transition-colors duration-200"
-                    >
-                      austinphiri@gmail.com
-                    </a>
+              <div className="bg-gray-50 rounded-lg p-8 sticky top-28">
+                <h3 className="font-garamond text-navy-500 text-xl font-bold mb-6">
+                  Direct Contact
+                </h3>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-crimson-100 p-2 rounded-lg">
+                      <Mail size={18} className="text-crimson-400" />
+                    </div>
+                    <div>
+                      <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
+                        Email
+                      </p>
+                      <a
+                        href="mailto:austinphiri@gmail.com"
+                        className="font-arial text-gray-700 text-sm hover:text-crimson-400 transition-colors"
+                      >
+                        austinphiri@gmail.com
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="bg-crimson-100 p-2 rounded-lg">
+                      <Phone size={18} className="text-crimson-400" />
+                    </div>
+                    <div>
+                      <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
+                        Phone / WhatsApp
+                      </p>
+                      <a
+                        href="tel:+265888879052"
+                        className="font-arial text-gray-700 text-sm hover:text-crimson-400 transition-colors"
+                      >
+                        +265 888 879 052
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="bg-crimson-100 p-2 rounded-lg">
+                      <MapPin size={18} className="text-crimson-400" />
+                    </div>
+                    <div>
+                      <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
+                        Location
+                      </p>
+                      <p className="font-arial text-gray-700 text-sm">
+                        Zomba, Malawi
+                      </p>
+                      <p className="font-arial text-gray-400 text-xs mt-1">
+                        Southern Africa
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="bg-crimson-100 p-2 rounded-lg">
+                      <Linkedin size={18} className="text-crimson-400" />
+                    </div>
+                    <div>
+                      <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
+                        LinkedIn
+                      </p>
+                      <a
+                        href="https://linkedin.com/in/austinphiriadvisory"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-arial text-gray-700 text-sm hover:text-crimson-400 transition-colors"
+                      >
+                        Connect with Austin
+                      </a>
+                    </div>
                   </div>
                 </div>
+
+                {/* Divider */}
+                <div className="border-t border-gray-200 my-6"></div>
+
+                {/* Response Time */}
                 <div className="flex items-start gap-4">
-                  <Phone size={20} className="text-crimson-400 mt-0.5 shrink-0" strokeWidth={1.5} />
+                  <div className="bg-navy-100 p-2 rounded-lg">
+                    <Clock size={18} className="text-navy-500" />
+                  </div>
                   <div>
-                    <p className="font-arial text-navy-500 text-sm font-semibold mb-1">
-                      Phone
+                    <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
+                      Response Time
                     </p>
                     <p className="font-arial text-gray-600 text-sm">
-                      +265 888 879 052
+                      Within two business days
                     </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <MapPin size={20} className="text-crimson-400 mt-0.5 shrink-0" strokeWidth={1.5} />
-                  <div>
-                    <p className="font-arial text-navy-500 text-sm font-semibold mb-1">
-                      Location
-                    </p>
-                    <p className="font-arial text-gray-600 text-sm">
-                      Zomba, Malawi
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Linkedin size={20} className="text-crimson-400 mt-0.5 shrink-0" strokeWidth={1.5} />
-                  <div>
-                    <p className="font-arial text-navy-500 text-sm font-semibold mb-1">
-                      LinkedIn
-                    </p>
-                    <a
-                      href="https://linkedin.com/in/austinphiriadvisory"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-arial text-gray-600 text-sm hover:text-crimson-400 transition-colors duration-200"
-                    >
-                      linkedin.com/in/austinphiriadvisory
-                    </a>
                   </div>
                 </div>
               </div>
