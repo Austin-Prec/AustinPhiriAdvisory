@@ -4,50 +4,56 @@ import { Shield, Search, FileCheck, GraduationCap, BookOpen, TrendingUp, Clipboa
 const services = [
   {
     icon: TrendingUp,
-    title: 'Donor Compliance',
-    description: 'Multi-donor portfolio management, donor reporting, and audit preparation across UN agencies, bilateral donors, and philanthropic partners.',
-    price: '$2,500 – $4,500',
-    period: '/ month',
+    title: 'Donor Compliance and Portfolio Management',
+    description: 'Full-cycle multi-donor financial management for NGOs. Reporting, controls, audit preparation, and compliance across international donors.',
+    outcome: 'Audit-ready reporting, zero compliance breaches, and donor confidence.',
+    price: '$2,500 - $4,500 USD',
+    priceNote: 'per month',
     type: 'fixed'
   },
   {
     icon: ClipboardCheck,
-    title: 'Forensic Readiness',
-    description: 'Diagnostic assessment identifying verification gaps, payroll control weaknesses, and board governance deficiencies before they become material.',
-    price: '$3,500 – $6,000',
-    period: '',
+    title: 'Forensic Readiness Assessment',
+    description: 'Diagnostic assessment of an institution\'s forensic infrastructure against the five pillars of the Forensic Readiness Framework.',
+    outcome: 'Identifies hidden control gaps before they become financial loss.',
+    price: '$3,500 - $6,000 USD',
+    priceNote: 'fixed project fee',
     type: 'fixed'
   },
   {
     icon: GraduationCap,
-    title: 'Governance Workshop',
-    description: 'Structured executive education for boards and management on institutional controls, authority architecture, and fraud prevention.',
-    price: '$3,000 – $5,000',
-    period: '',
+    title: 'Governance Capacity Building Workshop',
+    description: 'Structured training programmes for boards, management, and finance teams on institutional controls and fraud prevention.',
+    outcome: 'Builds relationships — workshop clients become retainer clients.',
+    price: '$3,000 - $5,000 USD',
+    priceNote: 'per workshop',
     type: 'fixed'
   },
   {
     icon: Shield,
-    title: 'Governance Architecture',
-    description: 'Full SIF implementation: diagnostic, policy manuals, authority matrix, SOPs, and staff orientation.',
-    price: 'Custom',
-    period: '',
+    title: 'Institutional Governance Architecture',
+    description: 'Full SIF implementation including diagnostic, policy manuals, authority matrix, SOPs, and staff orientation.',
+    outcome: 'Builds a complete control system that functions independent of individuals.',
+    price: 'Custom Quote',
+    priceNote: '$8,000 - $25,000',
     type: 'custom'
   },
   {
     icon: Search,
     title: 'Forensic Investigation',
-    description: 'Independent investigation with court-ready documentation: beneficiary verification, payroll fraud detection, asset misappropriation.',
-    price: 'Custom',
-    period: '',
+    description: 'Independent forensic investigation with court-ready documentation. Beneficiary verification, payroll fraud detection, asset misappropriation.',
+    outcome: 'Detects and exposes fraud early — before it becomes reputational damage.',
+    price: 'Custom Quote',
+    priceNote: '$5,000 - $20,000',
     type: 'custom'
   },
   {
     icon: BookOpen,
-    title: 'IFRS Audit Preparation',
-    description: 'Accrual transition, IFRS-compliant financial statements, going concern assessment, and audit readiness.',
-    price: 'Custom',
-    period: '',
+    title: 'IFRS Financial Reporting & Audit Preparation',
+    description: 'Accrual transition management, IFRS-compliant financial statements, going concern assessment, and audit readiness support.',
+    outcome: 'Full financial transparency with no hidden discrepancies.',
+    price: 'Custom Quote',
+    priceNote: '$3,000 - $8,000',
     type: 'custom'
   },
 ];
@@ -55,55 +61,68 @@ const services = [
 export default function Services() {
   return (
     <div>
-      {/* Minimal Hero */}
-      <section className="bg-navy-500 pt-32 pb-20">
+      {/* Header */}
+      <section className="bg-navy-500 pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="container-main px-6 lg:px-20">
-          <div className="max-w-2xl">
-            <h1 className="font-garamond text-white text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-4">
-              Services
-            </h1>
-            <p className="font-arial text-navy-200 text-base md:text-lg leading-relaxed">
-              Advisory engagements grounded in applied practice, not theory.
-            </p>
-          </div>
+          <h1 className="font-garamond text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Services & Pricing
+          </h1>
+          <p className="font-arial text-navy-100 text-base md:text-lg leading-relaxed max-w-3xl">
+            Every engagement is designed to solve a specific problem, deliver measurable protection, and build enforceable systems.
+          </p>
         </div>
       </section>
 
-      {/* Services Grid - Minimal & Elegant */}
-      <section className="bg-white py-20">
+      {/* Services Grid */}
+      <section className="bg-white section-padding">
         <div className="container-main px-6 lg:px-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
-              <div key={service.title} className="group">
-                <div className="mb-4">
-                  <service.icon size={24} className="text-crimson-400" strokeWidth={1.2} />
-                </div>
-                <h3 className="font-garamond text-navy-500 text-xl font-medium mb-2">
+              <div
+                key={service.title}
+                className={`border rounded-lg p-6 transition-all hover:shadow-md ${
+                  service.type === 'custom' ? 'border-gray-200' : 'border-gray-200'
+                }`}
+              >
+                <service.icon size={28} className="text-crimson-400 mb-4" strokeWidth={1.5} />
+                <h3 className="font-garamond text-navy-500 text-lg font-bold mb-2">
                   {service.title}
                 </h3>
+                
+                {/* Outcome Line */}
+                <p className="text-crimson-400 text-sm font-semibold mb-3">
+                  “{service.outcome}”
+                </p>
+                
                 <p className="font-arial text-gray-500 text-sm leading-relaxed mb-4">
                   {service.description}
                 </p>
-                <div className="pt-3">
-                  <p className="font-garamond text-navy-600 text-lg">
+                
+                <div className="pt-3 border-t border-gray-100">
+                  <p className="font-garamond text-navy-600 text-lg font-bold">
                     {service.price}
-                    <span className="font-arial text-gray-400 text-sm ml-1">{service.period}</span>
                   </p>
+                  {service.priceNote && (
+                    <p className="font-arial text-gray-400 text-xs mt-1">
+                      {service.priceNote}
+                    </p>
+                  )}
                 </div>
+                
                 <Link
                   to="/contact"
-                  className="inline-block mt-4 font-arial text-navy-500 text-sm font-medium border-b border-navy-200 hover:border-navy-500 transition-colors pb-0.5"
+                  className="inline-block w-full text-center mt-4 px-4 py-2 border border-navy-500 text-navy-500 rounded-lg font-arial text-sm font-semibold hover:bg-navy-500 hover:text-white transition-colors"
                 >
-                  Enquire →
+                  Enquire
                 </Link>
               </div>
             ))}
           </div>
 
-          {/* Elegant Footer Note */}
-          <div className="border-t border-gray-100 mt-16 pt-8 text-center">
-            <p className="font-arial text-gray-400 text-xs tracking-wide">
-              All prices in USD. Custom engagements quoted based on scope, complexity, and duration.
+          {/* Pricing Note */}
+          <div className="mt-10 text-center">
+            <p className="font-arial text-gray-400 text-xs">
+              All prices in USD. Custom quotes depend on scope, scale, and complexity.
             </p>
           </div>
         </div>
