@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Shield, Search, FileCheck, TrendingUp } from 'lucide-react';
 
-// Articles data directly in the component - no external file needed
+// Articles data
 const articles = [
   {
     id: 1,
@@ -125,18 +125,18 @@ export default function Insights() {
                     <span>{article.readTime}</span>
                   </div>
                   
-                  <button
-                    onClick={() => window.location.href = `/insights/${article.id}`}
+                  <Link
+                    to={`/insights/${article.id}`}
                     className="inline-flex items-center gap-2 text-crimson-400 text-sm font-semibold hover:text-crimson-500 transition-colors"
                   >
                     Read Article <ArrowRight size={14} />
-                  </button>
+                  </Link>
                 </div>
               );
             })}
           </div>
 
-          {/* Subscribe Section */}
+          {/* Subscribe Section - Working Form */}
           <div className="mt-16 bg-navy-50 rounded-lg p-8 text-center">
             <h3 className="font-garamond text-navy-500 text-2xl font-bold mb-3">
               Subscribe to Insights
@@ -144,10 +144,18 @@ export default function Insights() {
             <p className="font-arial text-gray-600 text-sm mb-6 max-w-lg mx-auto">
               Get the latest articles and thought leadership delivered to your inbox.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            
+            {/* Replace YOUR-FORM-ID with your actual Formspree ID */}
+            <form 
+              action="https://formspree.io/f/YOUR-FORM-ID" 
+              method="POST" 
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+            >
               <input
                 type="email"
+                name="email"
                 placeholder="Your email address"
+                required
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-navy-400"
               />
               <button
