@@ -50,6 +50,15 @@ export default function Article() {
       }
       ogUrl.setAttribute('content', currentUrl);
       
+      // Update Open Graph image (use logo)
+      let ogImage = document.querySelector('meta[property="og:image"]');
+      if (!ogImage) {
+        ogImage = document.createElement('meta');
+        ogImage.setAttribute('property', 'og:image');
+        document.head.appendChild(ogImage);
+      }
+      ogImage.setAttribute('content', 'https://austinphiriadvisory.pages.dev/APA-logo.png');
+      
       console.log('Meta tags updated for:', article.title);
     }
   }, [article, currentUrl]);
@@ -105,12 +114,14 @@ export default function Article() {
       <section className="bg-white py-16 md:py-24">
         <div className="container-main px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+            {/* Main Content */}
             <div className="lg:col-span-3">
               <div 
                 className="prose prose-lg max-w-none font-arial text-gray-600 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: article.content }}
               />
               
+              {/* Share Section */}
               <div className="border-t border-gray-100 mt-8 pt-6">
                 <h4 className="font-arial text-sm font-semibold mb-3">Share this article</h4>
                 <div className="flex flex-wrap gap-3">
@@ -132,11 +143,12 @@ export default function Article() {
               </div>
             </div>
             
+            {/* Sidebar - Author Bio */}
             <div className="lg:col-span-1">
               <div className="bg-gray-50 rounded-lg p-6 sticky top-28">
                 <h3 className="font-garamond text-navy-500 text-lg font-bold mb-3">About the Author</h3>
                 <p className="font-arial text-gray-600 text-sm leading-relaxed mb-3">
-                  <strong>Austin Precious Phiri</strong> is a governance architect and forensic finance practitioner with 12+ years of experience.
+                  <strong>Austin Precious Phiri</strong> is a governance architect and forensic finance practitioner with 12+ years of experience across the financial sector, international development, and civil society.
                 </p>
                 <Link to="/about" className="text-crimson-400 text-sm hover:underline inline-flex items-center gap-1">
                   Read full bio →
