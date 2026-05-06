@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User, Clock, Linkedin, Mail } from 'lucide-react';
 import { getArticleById, getIcon } from '../data/articleHelpers';
@@ -5,6 +6,70 @@ import { getArticleById, getIcon } from '../data/articleHelpers';
 export default function Article() {
   const { id } = useParams();
   const article = getArticleById(Number(id));
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  
+  // Update meta tags dynamically for sharing
+  useEffect(() => {
+    if (article) {
+      // Update page title
+      document.title = `${article.title} | Austin Phiri Advisory`;
+      
+      // Update meta description
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', article.excerpt);
+      } else {
+        const newMeta = document.createElement('meta');
+        newMeta.name = 'description';
+        newMeta.content = article.excerpt;
+        document.head.appendChild(newMeta);
+      }
+      
+      // Update Open Graph (Facebook/LinkedIn/WhatsApp) title
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute('content', article.title);
+      } else {
+        const newOgTitle = document.createElement('meta');
+        newOgTitle.setAttribute('property', 'og:title');
+        newOgTitle.content = article.title;
+        document.head.appendChild(newOgTitle);
+      }
+      
+      // Update Open Graph description
+      let ogDescription = document.querySelector('meta[property="og:description"]');
+      if (ogDescription) {
+        ogDescription.setAttribute('content', article.excerpt);
+      } else {
+        const newOgDesc = document.createElement('meta');
+        newOgDesc.setAttribute('property', 'og:description');
+        newOgDesc.content = article.excerpt;
+        document.head.appendChild(newOgDesc);
+      }
+      
+      // Update Open Graph URL
+      let ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) {
+        ogUrl.setAttribute('content', currentUrl);
+      } else {
+        const newOgUrl = document.createElement('meta');
+        newOgUrl.setAttribute('property', 'og:url');
+        newOgUrl.content = currentUrl;
+        document.head.appendChild(newOgUrl);
+      }
+      
+      // Update Open Graph image (use your logo as default)
+      let ogImage = document.querySelector('meta[property="og:image"]');
+      if (ogImage) {
+        ogImage.setAttribute('content', 'https://austinphiriadvisory.pages.dev/APA-logo.png');
+      } else {
+        const newOgImage = document.createElement('meta');
+        newOgImage.setAttribute('property', 'og:image');
+        newOgImage.content = 'https://austinphiriadvisory.pages.dev/APA-logo.png';
+        document.head.appendChild(newOgImage);
+      }
+    }
+  }, [article, currentUrl]);
   
   if (!article) {
     return (
@@ -18,7 +83,6 @@ export default function Article() {
   }
   
   const IconComponent = getIcon(article.icon);
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   
   return (
     <div>
