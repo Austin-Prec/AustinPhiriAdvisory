@@ -32,6 +32,39 @@ export default function Footer() {
           </div>
         </div>
         
+        {/* Registration Details - NEW */}
+        <div className="border-b border-navy-600 pb-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="font-arial text-navy-200 text-xs uppercase tracking-wider mb-2">Legal Registration</p>
+              <p className="font-arial text-white text-sm">
+                <span className="text-navy-200">Legal Name:</span> Austin Phiri Advisory Limited
+              </p>
+              <p className="font-arial text-white text-sm">
+                <span className="text-navy-200">Registration #:</span> COY-BMQHYQE
+              </p>
+              <p className="font-arial text-white text-sm">
+                <span className="text-navy-200">Tax ID (TPIN):</span> 71065132
+              </p>
+              <p className="font-arial text-navy-300 text-xs mt-1">
+                Certificate of Incorporation pending approval
+              </p>
+            </div>
+            <div>
+              <p className="font-arial text-navy-200 text-xs uppercase tracking-wider mb-2">UN & Procurement</p>
+              <p className="font-arial text-white text-sm">
+                <span className="text-navy-200">UNGM #:</span> 1208695
+              </p>
+              <p className="font-arial text-navy-300 text-xs mt-1">
+                Registered as Individual — upgrading to Organization (Level 1) upon certificate receipt
+              </p>
+              <p className="font-arial text-navy-300 text-xs mt-2">
+                PPDA Registration: To be completed after Certificate of Incorporation
+              </p>
+            </div>
+          </div>
+        </div>
+        
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
