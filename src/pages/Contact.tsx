@@ -235,6 +235,8 @@ export default function Contact() {
             {/* Contact Details - Professional Sidebar */}
             <div className="lg:col-span-2">
               <div className="bg-gray-50 rounded-lg p-8 sticky top-28">
+                
+                {/* Direct Contact */}
                 <h3 className="font-garamond text-navy-500 text-xl font-bold mb-6">
                   Direct Contact
                 </h3>
@@ -308,6 +310,48 @@ export default function Contact() {
                         Connect with Austin
                       </a>
                     </div>
+                  </div>
+                </div>
+
+                {/* Registration Details - NEW */}
+                <div className="border-t border-gray-200 my-6"></div>
+
+                <div>
+                  <h4 className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-3">
+                    Registration
+                  </h4>
+                  <div className="space-y-2">
+                    <p className="font-arial text-gray-600 text-sm">
+                      <span className="font-semibold">Legal Name:</span> Austin Phiri Advisory Limited
+                    </p>
+                    <p className="font-arial text-gray-600 text-sm">
+                      <span className="font-semibold">Reg #:</span> COY-BMQHYQE
+                    </p>
+                    <p className="font-arial text-gray-600 text-sm">
+                      <span className="font-semibold">Tax ID (TPIN):</span> 71065132
+                    </p>
+                    <p className="font-arial text-gray-400 text-xs mt-1">
+                      Certificate of Incorporation pending approval
+                    </p>
+                  </div>
+                </div>
+
+                <div className="border-t border-gray-200 my-6"></div>
+
+                <div>
+                  <h4 className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-3">
+                    UN & Procurement
+                  </h4>
+                  <div className="space-y-2">
+                    <p className="font-arial text-gray-600 text-sm">
+                      <span className="font-semibold">UNGM #:</span> 1208695
+                    </p>
+                    <p className="font-arial text-gray-500 text-xs">
+                      Registered as Individual — upgrading to Organization (Level 1) upon certificate receipt
+                    </p>
+                    <p className="font-arial text-gray-500 text-xs mt-2">
+                      PPDA Registration: To be completed after Certificate of Incorporation
+                    </p>
                   </div>
                 </div>
 
