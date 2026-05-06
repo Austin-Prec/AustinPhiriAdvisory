@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-navy-700 text-navy-100">
       <div className="container-main section-padding pb-8">
         
-        {/* Trust Badges Section - NEW */}
+        {/* Trust Badges Section */}
         <div className="border-b border-navy-600 pb-8 mb-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
@@ -103,7 +103,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="font-arial text-sm text-navy-200 hover:text-gold-200 transition-colors duration-200"
                 >
-                  linkedin.com/in/austinphiriadvisory
+                  Connect on LinkedIn
                 </a>
               </li>
             </ul>
