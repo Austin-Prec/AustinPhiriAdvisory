@@ -8,11 +8,11 @@
   html {
     scroll-behavior: smooth;
   }
-body {
+  body {
     font-family: 'EB Garamond', Arial, Helvetica, sans-serif;
     color: #1a1a1a;
-    font-size: 18px;  /* ← ADD THIS LINE */
-}
+    font-size: 18px;
+  }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'EB Garamond', Garamond, Georgia, serif;
@@ -56,4 +56,11 @@ body {
   .container-main {
     @apply max-w-7xl mx-auto;
   }
+}
+
+/* Move Tawk.to Chat Widget to Left Side */
+iframe[src*="tawk.to"] {
+    left: 20px !important;
+    right: auto !important;
+    bottom: 20px !important;
 }
