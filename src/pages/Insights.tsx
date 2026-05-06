@@ -136,7 +136,7 @@ export default function Insights() {
             })}
           </div>
 
-          {/* Subscribe Section - Working Form */}
+          {/* Subscribe Section - Working Form with Formspree */}
           <div className="mt-16 bg-navy-50 rounded-lg p-8 text-center">
             <h3 className="font-garamond text-navy-500 text-2xl font-bold mb-3">
               Subscribe to Insights
@@ -145,10 +145,9 @@ export default function Insights() {
               Get the latest articles and thought leadership delivered to your inbox.
             </p>
             
-            {/* Replace YOUR-FORM-ID with your actual Formspree ID */}
             <form 
-              action="https://formspree.io/f/YOUR-FORM-ID" 
-              method="POST" 
+              action="https://formspree.io/f/mdabzvyz" 
+              method="POST"
               className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
             >
               <input
