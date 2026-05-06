@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "Why Governance Frameworks Fail: The Enforcement Gap",
+    "excerpt": "Institutions don't fail because they lack governance frameworks. They fail because enforcement is left to individual integrity rather than embedded in structural controls.",
+    "content": "<p>Institutions across Africa invest significant resources in developing governance frameworks—policy manuals, organograms, delegation matrices, and compliance checklists. Yet governance failures continue to occur. The question is not whether frameworks exist, but whether they are enforceable.</p><p>The fundamental observation is this: institutions do not fail because they lack governance frameworks. They fail because enforcement is left to individual integrity rather than embedded in structural controls.</p><h2>The Enforcement Gap</h2><p>When enforcement depends on individual willingness to comply, governance becomes optional. The moment a senior manager decides a control is inconvenient, it is bypassed. The moment a board member exerts pressure, the system bends.</p><p>Structural enforcement means the control holds regardless of who is in the room. It means the system does not require courage to enforce—it simply operates.</p><h2>The SIF Approach</h2><p>The Structural Integrity Framework (SIF) addresses this gap through four interdependent pillars: Policy Architecture, Operational Controls, Authority Architecture, and Enforcement Mechanisms. Each pillar is designed to function independently of individual discretion.</p><p>When fully implemented, the SIF creates an environment where the path of least resistance is also the path of compliance. This is how institutions move from governance-as-documentation to governance-as-enforcement.</p>",
+    "category": "Governance",
+    "author": "Austin Precious Phiri",
+    "date": "May 6, 2026",
+    "readTime": "5 min read",
+    "icon": "Shield"
+  },
+  {
+    "id": 2,
+    "title": "Forensic Readiness: Preparing Before Fraud Happens",
+    "excerpt": "Most organisations only think about forensic investigation after fraud is detected. True forensic readiness means building the infrastructure to investigate any transaction at any time.",
+    "content": "<p>Most organisations only think about forensic investigation after fraud is detected. By then, evidence may have been destroyed, witnesses may have left, and the trail has gone cold.</p><p>True forensic readiness means building the infrastructure to investigate any transaction at any time—before fraud occurs, not after.</p><h2>The Five Pillars</h2><p>The Forensic Readiness Framework (FRF) establishes five pillars: Beneficiary Verification Architecture, Payroll Integrity Controls, Vendor and Payee Verification Register, Quarterly Forensic Review Protocol, and Board-Led Forensic Governance.</p><p>Each pillar ensures that when a question arises—about a payment, a beneficiary, or a vendor—the answer can be produced quickly, completely, and with evidentiary integrity.</p><h2>Why This Matters</h2><p>Organisations that are forensically ready investigate in weeks, not months. They recover funds. They hold perpetrators accountable. And they restore donor confidence faster.</p>",
+    "category": "Forensic Finance",
+    "author": "Austin Precious Phiri",
+    "date": "May 6, 2026",
+    "readTime": "4 min read",
+    "icon": "Search"
+  },
+  {
+    "id": 3,
+    "title": "Donor Compliance in 2026: What NGOs Need to Know",
+    "excerpt": "With increasing scrutiny on development funding, NGOs must move beyond checkbox compliance to embedded structural controls that satisfy donor requirements.",
+    "content": "<p>With increasing scrutiny on development funding, NGOs must move beyond checkbox compliance to embedded structural controls that satisfy donor requirements.</p><p>The days of passive compliance are over. Donors are now conducting forensic reviews, beneficiary verifications, and expenditure tracking. Organisations that cannot produce audit-ready documentation on demand risk funding suspension.</p><h2>The New Standard</h2><p>Donor compliance in 2026 requires three things: real-time reporting capability, independent verification trails, and structural controls that prevent misappropriation before it happens.</p><p>The organisations that thrive will be those that treat compliance not as a donor requirement, but as an institutional capability.</p>",
+    "category": "Compliance",
+    "author": "Austin Precious Phiri",
+    "date": "May 1, 2026",
+    "readTime": "6 min read",
+    "icon": "FileCheck"
+  }
+]
