@@ -8,66 +8,49 @@ export default function Article() {
   const article = getArticleById(Number(id));
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   
-  // Update meta tags dynamically for sharing
+  // Update meta tags immediately when article loads
   useEffect(() => {
     if (article) {
       // Update page title
       document.title = `${article.title} | Austin Phiri Advisory`;
       
-      // Update meta description
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute('content', article.excerpt);
-      } else {
-        const newMeta = document.createElement('meta');
-        newMeta.name = 'description';
-        newMeta.content = article.excerpt;
-        document.head.appendChild(newMeta);
+      // Update or create meta description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = 'description';
+        document.head.appendChild(metaDesc);
       }
+      metaDesc.setAttribute('content', article.excerpt);
       
-      // Update Open Graph (Facebook/LinkedIn/WhatsApp) title
+      // Update Open Graph title
       let ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) {
-        ogTitle.setAttribute('content', article.title);
-      } else {
-        const newOgTitle = document.createElement('meta');
-        newOgTitle.setAttribute('property', 'og:title');
-        newOgTitle.content = article.title;
-        document.head.appendChild(newOgTitle);
+      if (!ogTitle) {
+        ogTitle = document.createElement('meta');
+        ogTitle.setAttribute('property', 'og:title');
+        document.head.appendChild(ogTitle);
       }
+      ogTitle.setAttribute('content', article.title);
       
       // Update Open Graph description
-      let ogDescription = document.querySelector('meta[property="og:description"]');
-      if (ogDescription) {
-        ogDescription.setAttribute('content', article.excerpt);
-      } else {
-        const newOgDesc = document.createElement('meta');
-        newOgDesc.setAttribute('property', 'og:description');
-        newOgDesc.content = article.excerpt;
-        document.head.appendChild(newOgDesc);
+      let ogDesc = document.querySelector('meta[property="og:description"]');
+      if (!ogDesc) {
+        ogDesc = document.createElement('meta');
+        ogDesc.setAttribute('property', 'og:description');
+        document.head.appendChild(ogDesc);
       }
+      ogDesc.setAttribute('content', article.excerpt);
       
       // Update Open Graph URL
       let ogUrl = document.querySelector('meta[property="og:url"]');
-      if (ogUrl) {
-        ogUrl.setAttribute('content', currentUrl);
-      } else {
-        const newOgUrl = document.createElement('meta');
-        newOgUrl.setAttribute('property', 'og:url');
-        newOgUrl.content = currentUrl;
-        document.head.appendChild(newOgUrl);
+      if (!ogUrl) {
+        ogUrl = document.createElement('meta');
+        ogUrl.setAttribute('property', 'og:url');
+        document.head.appendChild(ogUrl);
       }
+      ogUrl.setAttribute('content', currentUrl);
       
-      // Update Open Graph image (use your logo as default)
-      let ogImage = document.querySelector('meta[property="og:image"]');
-      if (ogImage) {
-        ogImage.setAttribute('content', 'https://austinphiriadvisory.pages.dev/APA-logo.png');
-      } else {
-        const newOgImage = document.createElement('meta');
-        newOgImage.setAttribute('property', 'og:image');
-        newOgImage.content = 'https://austinphiriadvisory.pages.dev/APA-logo.png';
-        document.head.appendChild(newOgImage);
-      }
+      console.log('Meta tags updated for:', article.title);
     }
   }, [article, currentUrl]);
   
@@ -122,14 +105,12 @@ export default function Article() {
       <section className="bg-white py-16 md:py-24">
         <div className="container-main px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {/* Main Content */}
             <div className="lg:col-span-3">
               <div 
                 className="prose prose-lg max-w-none font-arial text-gray-600 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: article.content }}
               />
               
-              {/* Share Section */}
               <div className="border-t border-gray-100 mt-8 pt-6">
                 <h4 className="font-arial text-sm font-semibold mb-3">Share this article</h4>
                 <div className="flex flex-wrap gap-3">
@@ -151,12 +132,11 @@ export default function Article() {
               </div>
             </div>
             
-            {/* Sidebar - Author Bio */}
             <div className="lg:col-span-1">
               <div className="bg-gray-50 rounded-lg p-6 sticky top-28">
                 <h3 className="font-garamond text-navy-500 text-lg font-bold mb-3">About the Author</h3>
                 <p className="font-arial text-gray-600 text-sm leading-relaxed mb-3">
-                  <strong>Austin Precious Phiri</strong> is a governance architect and forensic finance practitioner with 12+ years of experience across the financial sector, international development, and civil society.
+                  <strong>Austin Precious Phiri</strong> is a governance architect and forensic finance practitioner with 12+ years of experience.
                 </p>
                 <Link to="/about" className="text-crimson-400 text-sm hover:underline inline-flex items-center gap-1">
                   Read full bio →
