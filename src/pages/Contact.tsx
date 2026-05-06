@@ -77,9 +77,6 @@ export default function Contact() {
       <section className="bg-navy-500 pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="container-main px-6 lg:px-20">
           <div className="max-w-3xl">
-            <div className="inline-block mb-4">
-              <span className="text-crimson-400 font-arial text-xs uppercase tracking-wider font-semibold">Start a Conversation</span>
-            </div>
             <h1 className="font-garamond text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               Let's Talk
             </h1>
@@ -98,7 +95,7 @@ export default function Contact() {
             
             {/* Form Section */}
             <div className="lg:col-span-3">
-              {/* Reassurance Message - NEW */}
+              {/* Reassurance Message */}
               <div className="bg-navy-50 border border-navy-100 rounded-lg p-4 mb-6 flex items-center gap-3">
                 <Shield size={20} className="text-crimson-400" />
                 <p className="font-arial text-navy-600 text-sm">
