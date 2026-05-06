@@ -31,5 +31,17 @@
     "date": "May 1, 2026",
     "readTime": "6 min read",
     "icon": "FileCheck"
-  }
+  },
+  ,
+{
+  "id": 8,
+  "title": "Most Institutions Have Policies. Very Few Have a Policy Architecture.",
+  "excerpt": "The difference is not the document. It is whether the document does anything. A policy filed in a folder is not a control—it is a record of intent.",
+  "content": "<p>Most institutions have policies. Very few have a policy architecture.</p><p>The difference is not the document. It is whether the document does anything.</p><p>A policy filed in a folder and referenced at onboarding is not a control. It is a record of intent. It tells you what the institution wanted to do. It says nothing about what actually happens when someone decides not to comply.</p><p>I have walked into institutions that could produce four policy manuals on request. Beautifully formatted. Board-approved. Dated and signed.</p><p>And then I found a finance officer processing payments without purchase orders. A manager approving his own expense claims. A payroll adjustment with no change log and no second signature.</p><p>The policies existed. The controls did not.</p><h2>What Real Policy Architecture Does</h2><p>A real policy architecture does three things that a policy document cannot do alone.</p><ul><li>It specifies who is responsible for <strong>enforcing</strong> each provision, not just who is responsible for complying with it.</li><li>It defines the consequence for non-compliance <strong>before</strong> the violation occurs, not after.</li><li>And it is communicated <strong>repeatedly</strong>, not filed once.</li></ul><p>A policy that staff cannot locate, do not understand, or have never been held accountable to is decoration. It protects no one. It deters nothing.</p><h2>The Question Every Institution Must Ask</h2><p>The question to ask your institution is not: do we have a finance policy?</p><p>The question is: when did someone last face a consequence for violating it?</p><p>If you cannot answer that question, you do not have a policy architecture. You have paperwork.</p>",
+  "category": "Governance",
+  "author": "Austin Precious Phiri",
+  "date": "May 7, 2026",
+  "readTime": "3 min read",
+  "icon": "Shield"
+}
 ]
