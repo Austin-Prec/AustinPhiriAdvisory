@@ -1,78 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowRight, Shield, Search, FileCheck, TrendingUp } from 'lucide-react';
-
-// Articles data
-const articles = [
-  {
-    id: 1,
-    title: "Why Governance Frameworks Fail: The Enforcement Gap",
-    excerpt: "Institutions don't fail because they lack governance frameworks. They fail because enforcement is left to individual integrity rather than embedded in structural controls.",
-    category: "Governance",
-    author: "Austin Precious Phiri",
-    date: "May 6, 2026",
-    readTime: "5 min read",
-    icon: Shield
-  },
-  {
-    id: 2,
-    title: "Forensic Readiness: Preparing Before Fraud Happens",
-    excerpt: "Most organisations only think about forensic investigation after fraud is detected. True forensic readiness means building the infrastructure to investigate any transaction at any time.",
-    category: "Forensic Finance",
-    author: "Austin Precious Phiri",
-    date: "May 6, 2026",
-    readTime: "4 min read",
-    icon: Search
-  },
-  {
-    id: 3,
-    title: "Donor Compliance in 2026: What NGOs Need to Know",
-    excerpt: "With increasing scrutiny on development funding, NGOs must move beyond checkbox compliance to embedded structural controls that satisfy donor requirements.",
-    category: "Compliance",
-    author: "Austin Precious Phiri",
-    date: "May 1, 2026",
-    readTime: "6 min read",
-    icon: FileCheck
-  },
-  {
-    id: 4,
-    title: "The Cost of Weak Internal Controls: A Forensic Perspective",
-    excerpt: "Drawing on six forensic investigations, this article examines the common patterns that enable financial irregularities to go undetected for years.",
-    category: "Forensic Finance",
-    author: "Austin Precious Phiri",
-    date: "April 22, 2026",
-    readTime: "7 min read",
-    icon: TrendingUp
-  },
-  {
-    id: 5,
-    title: "Building People-Independent Governance Systems",
-    excerpt: "The Structural Integrity Framework (SIF) offers a practical methodology for designing control environments that hold regardless of who is in the room.",
-    category: "Governance",
-    author: "Austin Precious Phiri",
-    date: "April 10, 2026",
-    readTime: "8 min read",
-    icon: Shield
-  },
-  {
-    id: 6,
-    title: "IFRS Transition for NGOs: Common Pitfalls and Solutions",
-    excerpt: "Moving from cash-basis to accrual accounting under IFRS presents challenges. Understanding the common pitfalls can save time and audit issues.",
-    category: "Financial Reporting",
-    author: "Austin Precious Phiri",
-    date: "March 25, 2026",
-    readTime: "5 min read",
-    icon: FileCheck
-  }
-];
-
-// Sort articles by date (newest first)
-const sortedArticles = [...articles].sort((a, b) => {
-  const dateA = new Date(a.date);
-  const dateB = new Date(b.date);
-  return dateB.getTime() - dateA.getTime();
-});
+import { Calendar, User, ArrowRight } from 'lucide-react';
+import { getSortedArticles, getIcon } from '../data/articleHelpers';
 
 export default function Insights() {
+  const articles = getSortedArticles();
+
   return (
     <div>
       {/* Header */}
@@ -92,8 +24,8 @@ export default function Insights() {
       <section className="bg-white section-padding">
         <div className="container-main px-6 lg:px-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sortedArticles.map((article) => {
-              const IconComponent = article.icon;
+            {articles.map((article) => {
+              const IconComponent = getIcon(article.icon);
               return (
                 <div
                   key={article.id}
@@ -136,7 +68,7 @@ export default function Insights() {
             })}
           </div>
 
-          {/* Subscribe Section - Working Form with Formspree */}
+          {/* Subscribe Section */}
           <div className="mt-16 bg-navy-50 rounded-lg p-8 text-center">
             <h3 className="font-garamond text-navy-500 text-2xl font-bold mb-3">
               Subscribe to Insights
