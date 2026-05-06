@@ -21,8 +21,8 @@ export default function Footer() {
             </div>
             <div>
               <Users size={28} className="text-gold-200 mx-auto mb-2" strokeWidth={1.2} />
-              <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Donors</p>
-              <p className="font-arial text-white text-sm font-medium">9 International</p>
+              <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Donors & Clients</p>
+              <p className="font-arial text-white text-sm font-medium">9+ International</p>
             </div>
             <div>
               <FileCheck size={28} className="text-gold-200 mx-auto mb-2" strokeWidth={1.2} />
@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
         </div>
         
-        {/* Registration Details - NEW */}
+        {/* Registration Details */}
         <div className="border-b border-navy-600 pb-8 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -73,8 +73,8 @@ export default function Footer() {
             </h3>
             <p className="font-arial text-sm leading-relaxed text-navy-200 max-w-md">
               Institutional governance architecture and forensic finance advisory for
-              NGOs, professional associations, and development sector organisations
-              across Southern Africa.
+              NGOs, private sector corporations, professional associations, and 
+              development sector organisations across Southern Africa.
             </p>
           </div>
 
