@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Linkedin, Send, Clock, Shield, CheckCircle } from 
 const enquiryTypes = [
   'Governance Architecture',
   'Forensic Investigation',
-  'Donor Compliance',
+  'Donor & Corporate Compliance',
   'Forensic Readiness Assessment',
   'Capacity Building',
   'IFRS Advisory',
@@ -73,7 +73,6 @@ export default function Contact() {
 
   return (
     <div>
-      {/* Hero Section - Professional Header */}
       <section className="bg-navy-500 pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="container-main px-6 lg:px-20">
           <div className="max-w-3xl">
@@ -88,14 +87,12 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="bg-white section-padding">
         <div className="container-main px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
             
             {/* Form Section */}
             <div className="lg:col-span-3">
-              {/* Reassurance Message */}
               <div className="bg-navy-50 border border-navy-100 rounded-lg p-4 mb-6 flex items-center gap-3">
                 <Shield size={20} className="text-crimson-400" />
                 <p className="font-arial text-navy-600 text-sm">
@@ -232,11 +229,10 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Contact Details - Professional Sidebar */}
+            {/* Contact Details Sidebar */}
             <div className="lg:col-span-2">
               <div className="bg-gray-50 rounded-lg p-8 sticky top-28">
                 
-                {/* Direct Contact */}
                 <h3 className="font-garamond text-navy-500 text-xl font-bold mb-6">
                   Direct Contact
                 </h3>
@@ -265,118 +261,4 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
-                        Phone / WhatsApp
-                      </p>
-                      <a
-                        href="tel:+265888879052"
-                        className="font-arial text-gray-700 text-sm hover:text-crimson-400 transition-colors"
-                      >
-                        +265 888 879 052
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="bg-crimson-100 p-2 rounded-lg">
-                      <MapPin size={18} className="text-crimson-400" />
-                    </div>
-                    <div>
-                      <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
-                        Location
-                      </p>
-                      <p className="font-arial text-gray-700 text-sm">
-                        Zomba, Malawi
-                      </p>
-                      <p className="font-arial text-gray-400 text-xs mt-1">
-                        Southern Africa
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="bg-crimson-100 p-2 rounded-lg">
-                      <Linkedin size={18} className="text-crimson-400" />
-                    </div>
-                    <div>
-                      <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
-                        LinkedIn
-                      </p>
-                      <a
-                        href="https://linkedin.com/in/austinphiriadvisory"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-arial text-gray-700 text-sm hover:text-crimson-400 transition-colors"
-                      >
-                        Connect with Austin
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Registration Details - NEW */}
-                <div className="border-t border-gray-200 my-6"></div>
-
-                <div>
-                  <h4 className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-3">
-                    Registration
-                  </h4>
-                  <div className="space-y-2">
-                    <p className="font-arial text-gray-600 text-sm">
-                      <span className="font-semibold">Legal Name:</span> Austin Phiri Advisory Limited
-                    </p>
-                    <p className="font-arial text-gray-600 text-sm">
-                      <span className="font-semibold">Reg #:</span> COY-BMQHYQE
-                    </p>
-                    <p className="font-arial text-gray-600 text-sm">
-                      <span className="font-semibold">Tax ID (TPIN):</span> 71065132
-                    </p>
-                    <p className="font-arial text-gray-400 text-xs mt-1">
-                      Certificate of Incorporation pending approval
-                    </p>
-                  </div>
-                </div>
-
-                <div className="border-t border-gray-200 my-6"></div>
-
-                <div>
-                  <h4 className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-3">
-                    UN & Procurement
-                  </h4>
-                  <div className="space-y-2">
-                    <p className="font-arial text-gray-600 text-sm">
-                      <span className="font-semibold">UNGM #:</span> 1208695
-                    </p>
-                    <p className="font-arial text-gray-500 text-xs">
-                      Registered as Individual — upgrading to Organization (Level 1) upon certificate receipt
-                    </p>
-                    <p className="font-arial text-gray-500 text-xs mt-2">
-                      PPDA Registration: To be completed after Certificate of Incorporation
-                    </p>
-                  </div>
-                </div>
-
-                {/* Divider */}
-                <div className="border-t border-gray-200 my-6"></div>
-
-                {/* Response Time */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-navy-100 p-2 rounded-lg">
-                    <Clock size={18} className="text-navy-500" />
-                  </div>
-                  <div>
-                    <p className="font-arial text-navy-500 text-xs font-semibold uppercase tracking-wider mb-1">
-                      Response Time
-                    </p>
-                    <p className="font-arial text-gray-600 text-sm">
-                      Within two business days
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
+                        Phone /
