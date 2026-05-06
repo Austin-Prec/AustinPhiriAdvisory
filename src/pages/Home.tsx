@@ -1,119 +1,146 @@
 import { Link } from 'react-router-dom';
-import { Shield, Search, FileCheck, GraduationCap, BookOpen, TrendingUp, ClipboardCheck } from 'lucide-react';
+import { Shield, Search, FileCheck, ArrowRight } from 'lucide-react';
 
-const services = [
-  {
-    icon: TrendingUp,
-    title: 'Donor & Corporate Compliance',
-    description: 'Full-cycle multi-donor and corporate financial management. Reporting, controls, audit preparation, and compliance across international donors and private sector clients.',
-    outcome: 'Audit-ready reporting, zero compliance breaches, and stakeholder confidence.',
-    price: '$2,500 - $4,500 USD',
-    priceNote: 'per month',
-    type: 'fixed'
-  },
-  {
-    icon: ClipboardCheck,
-    title: 'Forensic Readiness Assessment',
-    description: 'Diagnostic assessment against the five pillars of the Forensic Readiness Framework. Identifies verification gaps, payroll control weaknesses, and governance deficiencies.',
-    outcome: 'Identifies hidden control gaps before they become financial loss.',
-    price: '$3,500 - $6,000 USD',
-    priceNote: 'fixed project fee',
-    type: 'fixed'
-  },
-  {
-    icon: GraduationCap,
-    title: 'Governance Capacity Building Workshop',
-    description: 'Structured training for boards, management, and finance teams on institutional controls, authority architecture, fraud prevention, and compliance.',
-    outcome: 'Builds relationships — workshop clients become retainer clients.',
-    price: '$3,000 - $5,000 USD',
-    priceNote: 'per workshop',
-    type: 'fixed'
-  },
+const valueBlocks = [
   {
     icon: Shield,
-    title: 'Institutional Governance Architecture',
-    description: 'Full SIF implementation including diagnostic, policy manuals, authority matrix, SOPs, and staff orientation for NGOs, private sector, and development organisations.',
-    outcome: 'Builds a complete control system that functions independent of individuals.',
-    price: 'Custom Quote',
-    priceNote: '$8,000 - $25,000',
-    type: 'custom'
+    title: 'Structural Integrity',
+    description: 'Control systems that prevent override, even at senior management level.',
   },
   {
     icon: Search,
-    title: 'Forensic Investigation',
-    description: 'Independent forensic investigation with court-ready documentation. Beneficiary verification, payroll fraud detection, asset misappropriation, and corporate fraud.',
-    outcome: 'Detects and exposes fraud early — before it becomes reputational damage.',
-    price: 'Custom Quote',
-    priceNote: '$5,000 - $20,000',
-    type: 'custom'
+    title: 'Forensic Readiness',
+    description: 'Systems that detect and expose fraud early — before it becomes reputational damage.',
   },
   {
-    icon: BookOpen,
-    title: 'IFRS Financial Reporting & Audit Preparation',
-    description: 'Accrual transition management, IFRS-compliant financial statements, going concern assessment, and audit readiness support for all organisation types.',
-    outcome: 'Full financial transparency with no hidden discrepancies.',
-    price: 'Custom Quote',
-    priceNote: '$3,000 - $8,000',
-    type: 'custom'
+    icon: FileCheck,
+    title: 'Donor & Corporate Compliance',
+    description: 'Audit-ready reporting, zero compliance breaches, and confidence across multi-donor and corporate portfolios.',
   },
 ];
 
-export default function Services() {
+const credentials = [
+  { value: '$300K+', label: 'Managed across portfolios', detail: 'with zero adverse audit findings' },
+  { value: '9', label: 'International Donors', detail: 'UN agencies, bilateral & philanthropic' },
+  { value: '6', label: 'Forensic Investigations', detail: 'resulting in institutional control remediation' },
+  { value: '12', label: 'Years Applied Experience', detail: 'financial sector, development & private sector' },
+];
+
+export default function Home() {
   return (
     <div>
-      <section className="bg-navy-500 pt-28 pb-16 md:pt-36 md:pb-20">
-        <div className="container-main px-6 lg:px-20">
-          <h1 className="font-garamond text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Services & Pricing
-          </h1>
-          <p className="font-arial text-navy-100 text-base md:text-lg leading-relaxed max-w-3xl">
-            Strategic governance and forensic finance solutions for NGOs, private sector 
-            corporations, professional associations, and development organisations.
-          </p>
+      {/* Hero Section */}
+      <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 lg:pt-44 lg:pb-36">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url("/landing-page-bg.jpg")',
+          }}
+        >
+          <div className="absolute inset-0 bg-navy-500/85"></div>
+        </div>
+        
+        <div className="relative container-main px-6 lg:px-20 z-10">
+          <div className="max-w-4xl">
+            <h1 className="font-garamond text-white text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-snug mb-6">
+              We help organisations eliminate audit risk, prevent financial leakages, and build enforcement-driven governance systems.
+            </h1>
+            <p className="font-arial text-navy-100 text-base md:text-lg leading-relaxed mb-4">
+              Through institutional governance architecture and forensic finance advisory.
+            </p>
+            <p className="font-arial text-navy-200 text-sm italic leading-relaxed mb-10 max-w-3xl">
+              "Institutions do not fail because they lack governance frameworks. They fail because enforcement is left to individual integrity rather than embedded in structural controls."
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/contact" className="btn-primary text-center">
+                Book a Consultation
+              </Link>
+              <Link to="/frameworks" className="btn-secondary border-navy-200 text-navy-100 hover:bg-navy-200 hover:text-navy-700 text-center">
+                Read our Frameworks
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* Value Propositions */}
       <section className="bg-white section-padding">
-        <div className="container-main px-6 lg:px-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
+        <div className="container-main">
+          <div className="text-center mb-12">
+            <h2 className="font-garamond text-navy-500 text-2xl md:text-3xl font-bold mb-3">
+              What Clients Gain
+            </h2>
+            <p className="font-arial text-gray-600 max-w-2xl mx-auto">
+              Not frameworks. Not methodology. Real outcomes that protect your institution.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {valueBlocks.map((block) => (
               <div
-                key={service.title}
-                className="border rounded-lg p-6 transition-all hover:shadow-md"
+                key={block.title}
+                className="border border-gray-200 p-8 lg:p-10 hover:border-navy-300 transition-colors duration-300"
               >
-                <service.icon size={28} className="text-crimson-400 mb-4" strokeWidth={1.5} />
-                <h3 className="font-garamond text-navy-500 text-lg font-bold mb-2">
-                  {service.title}
+                <block.icon size={32} className="text-crimson-400 mb-5" strokeWidth={1.5} />
+                <h3 className="font-garamond text-navy-500 text-xl font-bold mb-3">
+                  {block.title}
                 </h3>
-                <p className="text-crimson-400 text-sm font-semibold mb-3">
-                  “{service.outcome}”
+                <p className="font-arial text-gray-600 text-sm leading-relaxed">
+                  {block.description}
                 </p>
-                <p className="font-arial text-gray-500 text-sm leading-relaxed mb-4">
-                  {service.description}
-                </p>
-                <div className="pt-3 border-t border-gray-100">
-                  <p className="font-garamond text-navy-600 text-lg font-bold">
-                    {service.price}
-                  </p>
-                  {service.priceNote && (
-                    <p className="font-arial text-gray-400 text-xs mt-1">
-                      {service.priceNote}
-                    </p>
-                  )}
-                </div>
-                <Link
-                  to="/contact"
-                  className="inline-block w-full text-center mt-4 px-4 py-2 border border-navy-500 text-navy-500 rounded-lg font-arial text-sm font-semibold hover:bg-navy-500 hover:text-white transition-colors"
-                >
-                  Enquire
-                </Link>
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <p className="font-arial text-gray-400 text-xs">
-              All prices in USD. Custom quotes depend on scope, scale, and complexity.
+        </div>
+      </section>
+
+      {/* Credentials Bar */}
+      <section className="bg-navy-500 py-12 md:py-16">
+        <div className="container-main px-6 lg:px-20">
+          <div className="text-center mb-8">
+            <p className="font-arial text-navy-100 text-sm uppercase tracking-wider">
+              Verified track record across Southern Africa
             </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4">
+            {credentials.map((cred) => (
+              <div key={cred.label} className="text-center">
+                <div className="font-garamond text-gold-200 text-3xl md:text-4xl font-bold mb-1">
+                  {cred.value}
+                </div>
+                <div className="font-arial text-navy-100 text-xs uppercase tracking-wider mb-1">
+                  {cred.label}
+                </div>
+                <div className="font-arial text-navy-200 text-[11px]">
+                  {cred.detail}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Preview */}
+      <section className="bg-gray-50 section-padding">
+        <div className="container-main px-6 lg:px-20">
+          <div className="max-w-3xl">
+            <h2 className="font-garamond text-navy-500 text-2xl md:text-3xl font-bold mb-6">
+              About Austin Phiri Advisory Limited
+            </h2>
+            <p className="font-arial text-gray-600 text-base leading-relaxed mb-6">
+              Austin Phiri Advisory Limited is a registered Malawian consulting firm
+              specialising in institutional governance architecture and forensic
+              finance. The firm brings twelve years of applied practice across the 
+              financial sector, international development, private sector, and civil 
+              society to bear on the governance and forensic challenges facing 
+              African institutions.
+            </p>
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 font-arial text-crimson-400 text-sm font-semibold uppercase tracking-wide hover:text-crimson-500 transition-colors duration-200"
+            >
+              Read full biography <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
