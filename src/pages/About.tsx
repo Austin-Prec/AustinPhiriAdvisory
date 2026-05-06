@@ -20,7 +20,9 @@ export default function About() {
             About
           </h1>
           <p className="font-arial text-navy-100 text-base md:text-lg leading-relaxed max-w-3xl">
-            The practitioner behind the practice — trusted to protect donor-funded resources across Southern Africa.
+            Governance and forensic finance specialist trusted to design control systems 
+            for NGOs, private sector corporations, and development organisations 
+            across Southern Africa.
           </p>
         </div>
       </section>
@@ -66,7 +68,9 @@ export default function About() {
               {/* Authority Quote */}
               <div className="bg-navy-50 border-l-4 border-crimson-400 p-4 mb-6">
                 <p className="font-arial text-navy-700 text-sm italic leading-relaxed">
-                  Trusted to design control systems for institutions managing donor-funded resources across Southern Africa. His work focuses on removing reliance on individual integrity and replacing it with enforceable institutional systems.
+                  Trusted to design control systems for NGOs, private sector corporations, 
+                  and development organisations. His work focuses on removing reliance on 
+                  individual integrity and replacing it with enforceable institutional systems.
                 </p>
               </div>
 
@@ -74,17 +78,18 @@ export default function About() {
                 <p>
                   Austin Precious Phiri is a Malawian institutional governance architect
                   and forensic finance practitioner with twelve years of applied experience
-                  across the financial sector, international development, and civil society.
+                  across the financial sector, international development, private sector, 
+                  and civil society.
                 </p>
                 <p>
                   He is the Managing Director of Austin Phiri Advisory Limited and
                   Board-Appointed CFO of a national professional association in Malawi.
                   His practice focuses on designing and implementing structural control
-                  environments for NGOs, professional associations, and development sector
-                  organisations operating in Southern Africa.
+                  environments for NGOs, private sector corporations, professional associations, 
+                  and development sector organisations operating in Southern Africa.
                 </p>
                 <p>
-                  He has managed multi-donor portfolios totalling <strong>$300,000+ USD</strong> across
+                  He has managed multi-donor and corporate portfolios totalling <strong>$300,000+ USD</strong> across
                   nine international partners with <strong>zero negative audit findings</strong>, and has
                   documented six forensic finance investigations resulting in institutional
                   control remediation.
@@ -103,7 +108,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Certifications - Simplified */}
+      {/* Certifications */}
       <section className="bg-gray-50 section-padding">
         <div className="container-main px-6 lg:px-20">
           <div className="flex items-center gap-3 mb-6">
