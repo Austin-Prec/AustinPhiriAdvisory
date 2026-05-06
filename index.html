@@ -31,8 +31,45 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-<script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="N-G35e3N8zdUPnFLSBxOo";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
+    <!-- WhatsApp Floating Button - Bottom Left -->
+    <a href="https://wa.me/265888879052" target="_blank" 
+       style="position: fixed; bottom: 20px; left: 20px; background-color: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 999; transition: all 0.3s ease;"
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white">
+            <path d="M12.032 2.001c-5.514 0-9.996 4.48-9.996 9.991 0 1.76.458 3.485 1.33 5.003L2 22l5.233-1.363c1.46.795 3.117 1.213 4.8 1.213 5.514 0 9.996-4.48 9.996-9.991 0-5.511-4.482-9.99-9.997-9.99zm0 18.398c-1.533 0-3.04-.412-4.363-1.19l-.313-.186-3.106.81.83-3.027-.204-.322a8.25 8.25 0 0 1-1.266-4.414c0-4.557 3.71-8.263 8.27-8.263 4.56 0 8.27 3.706 8.27 8.263 0 4.557-3.71 8.263-8.27 8.263z"/>
+            <path d="M16.75 13.825c-.26-.13-1.54-.76-1.78-.846-.24-.087-.414-.13-.588.13-.174.26-.676.846-.828 1.02-.152.174-.304.196-.564.065-.26-.13-1.096-.404-2.087-1.288-.771-.688-1.292-1.537-1.443-1.797-.152-.26-.016-.4.114-.53.117-.117.26-.304.39-.456.13-.152.174-.26.26-.434.087-.174.043-.326-.022-.456-.065-.13-.588-1.415-.805-1.937-.212-.51-.427-.44-.588-.448-.152-.008-.326-.009-.5-.009-.174 0-.456.065-.695.326-.239.26-.912.89-.912 2.174 0 1.283.934 2.523 1.064 2.698.13.174 1.837 2.805 4.451 3.934.622.27 1.108.43 1.487.55.625.2 1.194.17 1.644.103.5-.076 1.54-.63 1.757-1.237.217-.608.217-1.13.152-1.238-.065-.109-.239-.174-.5-.304z"/>
+        </svg>
+    </a>
+    
+    <!-- Chatbase AI Chatbot -->
+    <script>
+    (function(){
+        if(!window.chatbase || window.chatbase("getState") !== "initialized") {
+            window.chatbase = (...arguments) => {
+                if(!window.chatbase.q) { window.chatbase.q = []; }
+                window.chatbase.q.push(arguments);
+            };
+            window.chatbase = new Proxy(window.chatbase, {
+                get(target, prop) {
+                    if(prop === "q") { return target.q; }
+                    return (...args) => target(prop, ...args);
+                }
+            });
+        }
+        const onLoad = function() {
+            const script = document.createElement("script");
+            script.src = "https://www.chatbase.co/embed.min.js";
+            script.id = "N-G35e3N8zdUPnFLSBxOo";
+            script.domain = "www.chatbase.co";
+            document.body.appendChild(script);
+        };
+        if(document.readyState === "complete") {
+            onLoad();
+        } else {
+            window.addEventListener("load", onLoad);
+        }
+    })();
+    </script>
 </body>
 </html>
