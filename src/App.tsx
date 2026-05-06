@@ -6,6 +6,7 @@ import Services from './pages/Services';
 import Frameworks from './pages/Frameworks';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Insights from './pages/Insights';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/frameworks" element={<Frameworks />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/insights" element={<Insights />} />
           </Routes>
         </main>
         <Footer />
