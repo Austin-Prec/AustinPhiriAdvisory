@@ -15,10 +15,9 @@ const services = [
   {
     icon: TrendingUp,
     title: 'Donor Compliance and Portfolio Management',
-    description:
-      'Full-cycle multi-donor financial management for NGOs operating across international donor environments. Reporting, controls, audit preparation, and compliance.',
-    detail:
-      'Across UN agencies, bilateral donors, and philanthropic partners.',
+    description: 'Full-cycle multi-donor financial management for NGOs operating across international donor environments. Reporting, controls, audit preparation, and compliance.',
+    detail: 'Across UN agencies, bilateral donors, and philanthropic partners.',
+    outcome: 'Audit-ready reporting, zero compliance breaches, and donor confidence.',
     price: '$2,500 - $4,500 USD',
     priceNote: 'per month • accessible retainer',
     type: 'fixed'
@@ -26,10 +25,9 @@ const services = [
   {
     icon: ClipboardCheck,
     title: 'Forensic Readiness Assessment',
-    description:
-      "Diagnostic assessment of an institution's forensic infrastructure against the five pillars of the Forensic Readiness Framework.",
-    detail:
-      'Identification of verification gaps, payroll control weaknesses, vendor register deficiencies, and board governance gaps.',
+    description: "Diagnostic assessment of an institution's forensic infrastructure against the five pillars of the Forensic Readiness Framework.",
+    detail: 'Identification of verification gaps, payroll control weaknesses, vendor register deficiencies, and board governance gaps.',
+    outcome: 'Identifies hidden control gaps before they become financial loss.',
     price: '$3,500 - $6,000 USD',
     priceNote: 'fixed project fee • defined scope',
     type: 'fixed'
@@ -37,9 +35,9 @@ const services = [
   {
     icon: GraduationCap,
     title: 'Governance Capacity Building Workshop',
-    description:
-      'Structured training programmes for boards, management, and finance teams on institutional controls, authority architecture, fraud prevention, and donor compliance.',
+    description: 'Structured training programmes for boards, management, and finance teams on institutional controls, authority architecture, fraud prevention, and donor compliance.',
     detail: 'Delivered in-person or remotely across Southern Africa.',
+    outcome: 'Builds relationships — workshop clients become retainer clients.',
     price: '$3,000 - $5,000 USD',
     priceNote: 'per workshop • 1-2 days intensive',
     type: 'fixed'
@@ -47,10 +45,9 @@ const services = [
   {
     icon: Shield,
     title: 'Institutional Governance Architecture',
-    description:
-      'Design and implementation of complete structural control environments. Policy manual development, authority matrix design, SOP frameworks, and organisational structure architecture.',
-    detail:
-      'For institutions establishing governance infrastructure from zero or remediating existing governance failures.',
+    description: 'Design and implementation of complete structural control environments. Policy manual development, authority matrix design, SOP frameworks, and organisational structure architecture.',
+    detail: 'For institutions establishing governance infrastructure from zero or remediating existing governance failures.',
+    outcome: 'Builds a complete control system that functions independent of individuals.',
     price: 'Custom Quote',
     priceNote: '$8,000 - $25,000 depending on scope • 2-3 month engagement',
     type: 'custom'
@@ -58,9 +55,9 @@ const services = [
   {
     icon: Search,
     title: 'Forensic Finance Advisory',
-    description:
-      'Independent forensic investigation of financial irregularities, fraud, and control failures. Beneficiary fund verification, payroll fraud detection, asset misappropriation investigation, and unauthorised payment recovery.',
+    description: 'Independent forensic investigation of financial irregularities, fraud, and control failures. Beneficiary fund verification, payroll fraud detection, asset misappropriation investigation, and unauthorised payment recovery.',
     detail: 'Court-ready documentation and evidence trails.',
+    outcome: 'Detects and exposes fraud early — before it becomes reputational damage.',
     price: 'Custom Quote',
     priceNote: '$5,000 - $20,000 depending on scope • 3-6 weeks',
     type: 'custom'
@@ -68,10 +65,9 @@ const services = [
   {
     icon: BookOpen,
     title: 'IFRS Financial Reporting and Audit Preparation',
-    description:
-      'Accrual transition management, IFRS-compliant financial statement preparation, going concern assessment, and audit readiness support.',
-    detail:
-      'For NGOs and associations transitioning from cash-basis reporting.',
+    description: 'Accrual transition management, IFRS-compliant financial statement preparation, going concern assessment, and audit readiness support.',
+    detail: 'For NGOs and associations transitioning from cash-basis reporting.',
+    outcome: 'Full financial transparency with no hidden discrepancies.',
     price: 'Custom Quote',
     priceNote: '$3,000 - $8,000 depending on organisation size',
     type: 'custom'
@@ -88,8 +84,7 @@ export default function Services() {
             Services & Pricing
           </h1>
           <p className="font-arial text-navy-100 text-base md:text-lg leading-relaxed max-w-3xl">
-            Advisory services grounded in applied practice, not theory. Each engagement
-            is designed to embed structural controls that outlast individual integrity.
+            Every engagement is designed to solve a specific problem, deliver measurable protection, and build enforceable systems that outlast individual integrity.
           </p>
         </div>
       </section>
@@ -114,9 +109,17 @@ export default function Services() {
                   }`}
                   strokeWidth={1.5}
                 />
-                <h3 className="font-garamond text-navy-500 text-lg font-bold mb-3">
+                <h3 className="font-garamond text-navy-500 text-lg font-bold mb-2">
                   {service.title}
                 </h3>
+                
+                {/* OUTCOME LINE - What client gets (NEW) */}
+                <p className={`text-sm font-semibold mb-3 ${
+                  service.type === 'custom' ? 'text-blue-600' : 'text-green-600'
+                }`}>
+                  “{service.outcome}”
+                </p>
+                
                 <p className="font-arial text-gray-600 text-sm leading-relaxed mb-3">
                   {service.description}
                 </p>
@@ -140,10 +143,10 @@ export default function Services() {
                 
                 <Link
                   to="/contact"
-                  className={`inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide transition-colors duration-200 mt-auto ${
+                  className={`inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wide transition-colors duration-200 mt-auto py-2 px-4 rounded-lg ${
                     service.type === 'custom' 
-                      ? 'text-blue-600 hover:text-blue-700' 
-                      : 'text-green-600 hover:text-green-700'
+                      ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                      : 'bg-green-700 text-white hover:bg-green-800'
                   }`}
                 >
                   {service.type === 'custom' ? 'Request Quote' : 'Book Service'} <ArrowRight size={14} />
@@ -162,6 +165,14 @@ export default function Services() {
               <li>• Workshop clients often become retainer clients — relationship building is part of the model.</li>
               <li>• All engagements are governed by a formal service level agreement (SLA).</li>
             </ul>
+          </div>
+
+          {/* Trust Statement */}
+          <div className="mt-8 text-center">
+            <p className="font-arial text-gray-500 text-sm">
+              All advisory engagements apply the <strong className="text-navy-600">Structural Integrity Framework (SIF)</strong> and 
+              <strong className="text-navy-600"> Forensic Readiness Framework (FRF)</strong> as practitioner methodologies.
+            </p>
           </div>
         </div>
       </section>
