@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "title": "Why Governance Frameworks Fail: The Enforcement Gap",
+    "excerpt": "Institutions don't fail because they lack governance frameworks. They fail because enforcement is left to individual integrity rather than embedded in structural controls.",
+    "content": "<p>Full article content goes here...</p>",
+    "category": "Governance",
+    "author": "Austin Precious Phiri",
+    "dateAdded": "2026-05-06",
+    "readTime": "5 min read",
+    "icon": "Shield"
+  },
+  {
+    "id": 2,
+    "title": "Forensic Readiness: Preparing Before Fraud Happens",
+    "excerpt": "Most organisations only think about forensic investigation after fraud is detected. True forensic readiness means building the infrastructure to investigate any transaction at any time.",
+    "content": "<p>Full article content goes here...</p>",
+    "category": "Forensic Finance",
+    "author": "Austin Precious Phiri",
+    "dateAdded": "2026-05-06",
+    "readTime": "4 min read",
+    "icon": "Search"
+  }
+]
