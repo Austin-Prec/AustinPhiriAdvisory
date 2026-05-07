@@ -95,7 +95,6 @@ export default function Contact() {
             
             {/* Form Section */}
             <div className="lg:col-span-3">
-              {/* Reassurance Message */}
               <div className="bg-navy-50 border border-navy-100 rounded-lg p-4 mb-6 flex items-center gap-3">
                 <Shield size={20} className="text-crimson-400" />
                 <p className="font-arial text-navy-600 text-sm">
@@ -250,10 +249,10 @@ export default function Contact() {
                         Email
                       </p>
                       <a
-                        href="mailto:austinphiri@gmail.com"
+                        href="mailto:austinpphiri@gmail.com"
                         className="font-arial text-gray-700 text-sm hover:text-crimson-400 transition-colors"
                       >
-                        austinphiri@gmail.com
+                        austinpphiri@gmail.com
                       </a>
                     </div>
                   </div>
