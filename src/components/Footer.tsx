@@ -88,6 +88,7 @@ export default function Footer() {
                 { to: '/services', label: 'Services' },
                 { to: '/frameworks', label: 'Frameworks' },
                 { to: '/about', label: 'About' },
+                { to: '/insights', label: 'Insights' },
                 { to: '/contact', label: 'Contact' },
               ].map((link) => (
                 <li key={link.to}>
@@ -110,10 +111,10 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-gold-200 mt-0.5 shrink-0" />
                 <a
-                  href="mailto:austinphiri@gmail.com"
+                  href="mailto:austinpphiri@gmail.com"
                   className="font-arial text-sm text-navy-200 hover:text-gold-200 transition-colors duration-200"
                 >
-                  austinphiri@gmail.com
+                  austinpphiri@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
