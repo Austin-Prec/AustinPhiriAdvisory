@@ -231,7 +231,7 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Contact Details Sidebar */}
+            {/* Contact Details Sidebar - UPDATED */}
             <div className="lg:col-span-2">
               <div className="bg-gray-50 rounded-lg p-8 sticky top-28">
                 
@@ -311,7 +311,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Registration Details */}
+                {/* Registration Details - UPDATED */}
                 <div className="border-t border-gray-200 my-6"></div>
 
                 <div>
@@ -328,8 +328,8 @@ export default function Contact() {
                     <p className="font-arial text-gray-600 text-sm">
                       <span className="font-semibold">Tax ID (TPIN):</span> 71065132
                     </p>
-                    <p className="font-arial text-gray-400 text-xs mt-1">
-                      Certificate of Incorporation pending approval
+                    <p className="font-arial text-green-600 text-xs mt-1">
+                      ✓ Certificate of Incorporation issued 08 May 2026
                     </p>
                   </div>
                 </div>
@@ -342,13 +342,13 @@ export default function Contact() {
                   </h4>
                   <div className="space-y-2">
                     <p className="font-arial text-gray-600 text-sm">
-                      <span className="font-semibold">UNGM #:</span> 1208695
+                      <span className="font-semibold">UNGM #:</span> 1217321
                     </p>
                     <p className="font-arial text-gray-500 text-xs">
-                      Registered as Individual — upgrading to Organization (Level 1) upon certificate receipt
+                      ✓ Registered as Organization
                     </p>
                     <p className="font-arial text-gray-500 text-xs mt-2">
-                      PPDA Registration: To be completed after Certificate of Incorporation
+                      PPDA Registration: In Progress
                     </p>
                   </div>
                 </div>
