@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Mail, Phone, MapPin, Shield, Award, Users, FileCheck } from 'lucide-react';
+import { Linkedin, Mail, Phone, MapPin, Shield, Award, Users, FileCheck, Globe } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
         </div>
         
-        {/* Registration Details */}
+        {/* Registration Details - UPDATED */}
         <div className="border-b border-navy-600 pb-8 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -46,20 +46,20 @@ export default function Footer() {
               <p className="font-arial text-white text-sm">
                 <span className="text-navy-200">Tax ID (TPIN):</span> 71065132
               </p>
-              <p className="font-arial text-navy-300 text-xs mt-1">
-                Certificate of Incorporation pending approval
+              <p className="font-arial text-gold-300 text-xs mt-1">
+                ✓ Certificate of Incorporation issued 08 May 2026
               </p>
             </div>
             <div>
               <p className="font-arial text-navy-200 text-xs uppercase tracking-wider mb-2">UN & Procurement</p>
               <p className="font-arial text-white text-sm">
-                <span className="text-navy-200">UNGM #:</span> 1208695
+                <span className="text-navy-200">UNGM #:</span> 1217321
               </p>
               <p className="font-arial text-navy-300 text-xs mt-1">
-                Registered as Individual — upgrading to Organization (Level 1) upon certificate receipt
+                ✓ Registered as Organization
               </p>
               <p className="font-arial text-navy-300 text-xs mt-2">
-                PPDA Registration: To be completed after Certificate of Incorporation
+                PPDA Registration: In Progress
               </p>
             </div>
           </div>
@@ -147,6 +147,9 @@ export default function Footer() {
         <div className="border-t border-navy-600 pt-6">
           <p className="font-arial text-xs text-navy-300 text-center">
             &copy; 2026 Austin Phiri Advisory Limited. All rights reserved.
+          </p>
+          <p className="font-arial text-xs text-navy-400 text-center mt-2">
+            Registered under the Companies Act (Cap. 46:03) | Certificate of Incorporation issued 08 May 2026
           </p>
         </div>
       </div>
