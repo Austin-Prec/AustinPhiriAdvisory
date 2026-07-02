@@ -31,7 +31,17 @@
     - Storage bucket: public read (so images render on the live site), writes
       restricted to authenticated users.
 
-  4. Notes
+  4. Idempotency
+    - Every CREATE POLICY is preceded by a matching DROP POLICY IF EXISTS.
+      Postgres has no "CREATE POLICY IF NOT EXISTS", so without this, running
+      the migration a second time (e.g. after a partial failure, or by
+      accident) errors out on the first policy that already exists and
+      silently skips everything after it. Dropping first makes this script
+      safe to run any number of times, in any starting state — table absent,
+      table present with no policies, table present with some policies.
+    - Same treatment for the trigger and the storage policies below.
+
+  5. Notes
     - No `company_id` scoping is needed here — this is a single-author site,
       not a multi-tenant product. Auth alone (are you logged in as the site
       owner) is the entire authorization model for writes.
@@ -61,24 +71,28 @@ CREATE INDEX IF NOT EXISTS idx_blog_posts_slug
 ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
 
 -- Public can read only published posts
+DROP POLICY IF EXISTS "Public can view published posts" ON blog_posts;
 CREATE POLICY "Public can view published posts"
   ON blog_posts FOR SELECT
   TO anon
   USING (status = 'published');
 
 -- Authenticated (Austin, logged into /admin) can read everything including drafts
+DROP POLICY IF EXISTS "Authenticated can view all posts" ON blog_posts;
 CREATE POLICY "Authenticated can view all posts"
   ON blog_posts FOR SELECT
   TO authenticated
   USING (true);
 
 -- Authenticated can create posts
+DROP POLICY IF EXISTS "Authenticated can create posts" ON blog_posts;
 CREATE POLICY "Authenticated can create posts"
   ON blog_posts FOR INSERT
   TO authenticated
   WITH CHECK (true);
 
 -- Authenticated can update posts
+DROP POLICY IF EXISTS "Authenticated can update posts" ON blog_posts;
 CREATE POLICY "Authenticated can update posts"
   ON blog_posts FOR UPDATE
   TO authenticated
@@ -86,6 +100,7 @@ CREATE POLICY "Authenticated can update posts"
   WITH CHECK (true);
 
 -- Authenticated can delete posts
+DROP POLICY IF EXISTS "Authenticated can delete posts" ON blog_posts;
 CREATE POLICY "Authenticated can delete posts"
   ON blog_posts FOR DELETE
   TO authenticated
@@ -111,22 +126,26 @@ INSERT INTO storage.buckets (id, name, public)
 VALUES ('blog-images', 'blog-images', true)
 ON CONFLICT (id) DO NOTHING;
 
+DROP POLICY IF EXISTS "Public can view blog images" ON storage.objects;
 CREATE POLICY "Public can view blog images"
   ON storage.objects FOR SELECT
   TO anon
   USING (bucket_id = 'blog-images');
 
+DROP POLICY IF EXISTS "Authenticated can upload blog images" ON storage.objects;
 CREATE POLICY "Authenticated can upload blog images"
   ON storage.objects FOR INSERT
   TO authenticated
   WITH CHECK (bucket_id = 'blog-images');
 
+DROP POLICY IF EXISTS "Authenticated can update blog images" ON storage.objects;
 CREATE POLICY "Authenticated can update blog images"
   ON storage.objects FOR UPDATE
   TO authenticated
   USING (bucket_id = 'blog-images')
   WITH CHECK (bucket_id = 'blog-images');
 
+DROP POLICY IF EXISTS "Authenticated can delete blog images" ON storage.objects;
 CREATE POLICY "Authenticated can delete blog images"
   ON storage.objects FOR DELETE
   TO authenticated
