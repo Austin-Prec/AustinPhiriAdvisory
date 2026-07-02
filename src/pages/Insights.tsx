@@ -1,9 +1,23 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowRight } from 'lucide-react';
-import { getSortedArticles, getIcon } from '../data/articleHelpers';
+import { Calendar, User, ArrowRight, Loader2 } from 'lucide-react';
+import {
+  getPublishedPosts,
+  getIconForCategory,
+  formatDisplayDate,
+} from '../data/blogHelpers';
+import type { BlogPost } from '../lib/supabase';
 
 export default function Insights() {
-  const articles = getSortedArticles();
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getPublishedPosts().then((data) => {
+      setPosts(data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <div>
@@ -23,50 +37,75 @@ export default function Insights() {
       {/* Articles Grid */}
       <section className="bg-white section-padding">
         <div className="container-main px-6 lg:px-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => {
-              const IconComponent = getIcon(article.icon);
-              return (
-                <div
-                  key={article.id}
-                  className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:border-navy-300"
-                >
-                  <IconComponent size={32} className="text-crimson-400 mb-4" strokeWidth={1.5} />
-                  
-                  <span className="inline-block bg-navy-50 text-navy-500 text-xs font-semibold px-2 py-1 rounded mb-3">
-                    {article.category}
-                  </span>
-                  
-                  <h3 className="font-garamond text-navy-500 text-xl font-bold mb-2">
-                    {article.title}
-                  </h3>
-                  
-                  <p className="font-arial text-gray-500 text-sm leading-relaxed mb-4">
-                    {article.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center gap-4 text-gray-400 text-xs mb-4">
-                    <div className="flex items-center gap-1">
-                      <Calendar size={12} />
-                      <span>{article.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <User size={12} />
-                      <span>{article.author.split(' ')[0]}</span>
-                    </div>
-                    <span>{article.readTime}</span>
-                  </div>
-                  
-                  <Link
-                    to={`/insights/${article.id}`}
-                    className="inline-flex items-center gap-2 text-crimson-400 text-sm font-semibold hover:text-crimson-500 transition-colors"
+          {loading ? (
+            <div className="flex justify-center py-16">
+              <Loader2 className="animate-spin text-navy-400" size={28} />
+            </div>
+          ) : posts.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="font-arial text-gray-500">
+                New articles are on the way. Check back soon.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {posts.map((post) => {
+                const IconComponent = getIconForCategory(post.category);
+                return (
+                  <div
+                    key={post.id}
+                    className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-navy-300 flex flex-col"
                   >
-                    Read Article <ArrowRight size={14} />
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
+                    {post.cover_image_url && (
+                      <img
+                        src={post.cover_image_url}
+                        alt={post.title}
+                        className="w-full h-44 object-cover"
+                      />
+                    )}
+                    <div className="p-6 flex flex-col flex-1">
+                      <IconComponent
+                        size={32}
+                        className="text-crimson-400 mb-4"
+                        strokeWidth={1.5}
+                      />
+
+                      <span className="inline-block bg-navy-50 text-navy-500 text-xs font-semibold px-2 py-1 rounded mb-3 w-fit">
+                        {post.category}
+                      </span>
+
+                      <h3 className="font-garamond text-navy-500 text-xl font-bold mb-2">
+                        {post.title}
+                      </h3>
+
+                      <p className="font-arial text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="flex items-center gap-4 text-gray-400 text-xs mb-4">
+                        <div className="flex items-center gap-1">
+                          <Calendar size={12} />
+                          <span>{formatDisplayDate(post.published_at)}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <User size={12} />
+                          <span>Austin</span>
+                        </div>
+                        <span>{post.read_time}</span>
+                      </div>
+
+                      <Link
+                        to={`/insights/${post.slug}`}
+                        className="inline-flex items-center gap-2 text-crimson-400 text-sm font-semibold hover:text-crimson-500 transition-colors"
+                      >
+                        Read Article <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           {/* Subscribe Section */}
           <div className="mt-16 bg-navy-50 rounded-lg p-8 text-center">
