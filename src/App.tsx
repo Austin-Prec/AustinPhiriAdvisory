@@ -11,6 +11,7 @@ import Article from './pages/Article';
 import AdminLogin from './admin/Login';
 import AdminDashboard from './admin/Dashboard';
 import AdminEditor from './admin/Editor';
+import PageEditor from './admin/PageEditor';
 import RequireAuth from './admin/RequireAuth';
 
 function App() {
@@ -41,6 +42,14 @@ function App() {
           element={
             <RequireAuth>
               <AdminEditor />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/admin/pages"
+          element={
+            <RequireAuth>
+              <PageEditor />
             </RequireAuth>
           }
         />

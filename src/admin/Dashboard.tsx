@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Plus, Pencil, Trash2, LogOut, Eye } from 'lucide-react';
+import { Plus, Pencil, Trash2, LogOut, Eye, LayoutTemplate } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { getAllArticlesForAdmin, deleteArticle, type Article } from '../lib/articles';
 
@@ -62,12 +62,20 @@ export default function Dashboard() {
               Austin Phiri Advisory — writing area
             </p>
           </div>
-          <button
-            onClick={handleSignOut}
-            className="flex items-center gap-2 text-navy-200 hover:text-white text-sm font-arial transition-colors"
-          >
-            <LogOut size={16} /> Sign out
-          </button>
+          <div className="flex items-center gap-5">
+            <Link
+              to="/admin/pages"
+              className="flex items-center gap-2 text-navy-200 hover:text-white text-sm font-arial transition-colors"
+            >
+              <LayoutTemplate size={16} /> Site pages
+            </Link>
+            <button
+              onClick={handleSignOut}
+              className="flex items-center gap-2 text-navy-200 hover:text-white text-sm font-arial transition-colors"
+            >
+              <LogOut size={16} /> Sign out
+            </button>
+          </div>
         </div>
       </header>
 
