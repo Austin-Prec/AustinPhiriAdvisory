@@ -8,40 +8,62 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Insights from './pages/Insights';
 import Article from './pages/Article';
-import AdminApp from './admin/AdminApp';
-
-// Public pages share the site chrome (Navbar/Footer). The admin tool at
-// /admin is a standalone screen with its own layout, so it's kept outside
-// this wrapper rather than nested inside it.
-function PublicLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-1">{children}</main>
-      <Footer />
-    </div>
-  );
-}
+import AdminLogin from './admin/Login';
+import AdminDashboard from './admin/Dashboard';
+import AdminEditor from './admin/Editor';
+import RequireAuth from './admin/RequireAuth';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/admin/*" element={<AdminApp />} />
+        {/* Admin routes render without the public Navbar/Footer, since the
+            writing area is a separate tool rather than a page of the site. */}
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route
-          path="/*"
+          path="/admin"
           element={
-            <PublicLayout>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/frameworks" element={<Frameworks />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/insights" element={<Insights />} />
-                <Route path="/insights/:slug" element={<Article />} />
-              </Routes>
-            </PublicLayout>
+            <RequireAuth>
+              <AdminDashboard />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/admin/new"
+          element={
+            <RequireAuth>
+              <AdminEditor />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/admin/edit/:id"
+          element={
+            <RequireAuth>
+              <AdminEditor />
+            </RequireAuth>
+          }
+        />
+
+        {/* Public site */}
+        <Route
+          path="*"
+          element={
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/frameworks" element={<Frameworks />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/insights" element={<Insights />} />
+                  <Route path="/insights/:slug" element={<Article />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
           }
         />
       </Routes>

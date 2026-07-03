@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowRight, Loader2 } from 'lucide-react';
-import {
-  getPublishedPosts,
-  getIconForCategory,
-  formatDisplayDate,
-} from '../data/blogHelpers';
-import type { BlogPost } from '../lib/supabase';
+import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Shield, Search, FileCheck, TrendingUp } from 'lucide-react';
+import { getPublishedArticles, type Article } from '../lib/articles';
+
+const ICONS: Record<string, typeof Shield> = { Shield, Search, FileCheck, TrendingUp };
+const getIcon = (name: string) => ICONS[name] ?? Shield;
 
 export default function Insights() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
-    getPublishedPosts().then((data) => {
-      setPosts(data);
-      setLoading(false);
-    });
+    getPublishedArticles()
+      .then(setArticles)
+      .catch(() => setLoadError('Could not load articles right now. Please try again shortly.'))
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
@@ -37,75 +37,76 @@ export default function Insights() {
       {/* Articles Grid */}
       <section className="bg-white section-padding">
         <div className="container-main px-6 lg:px-20">
-          {loading ? (
-            <div className="flex justify-center py-16">
-              <Loader2 className="animate-spin text-navy-400" size={28} />
-            </div>
-          ) : posts.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="font-arial text-gray-500">
-                New articles are on the way. Check back soon.
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post) => {
-                const IconComponent = getIconForCategory(post.category);
-                return (
-                  <div
-                    key={post.id}
-                    className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-navy-300 flex flex-col"
-                  >
-                    {post.cover_image_url && (
-                      <img
-                        src={post.cover_image_url}
-                        alt={post.title}
-                        className="w-full h-44 object-cover"
-                      />
-                    )}
-                    <div className="p-6 flex flex-col flex-1">
-                      <IconComponent
-                        size={32}
-                        className="text-crimson-400 mb-4"
-                        strokeWidth={1.5}
-                      />
-
-                      <span className="inline-block bg-navy-50 text-navy-500 text-xs font-semibold px-2 py-1 rounded mb-3 w-fit">
-                        {post.category}
-                      </span>
-
-                      <h3 className="font-garamond text-navy-500 text-xl font-bold mb-2">
-                        {post.title}
-                      </h3>
-
-                      <p className="font-arial text-gray-500 text-sm leading-relaxed mb-4 flex-1">
-                        {post.excerpt}
-                      </p>
-
-                      <div className="flex items-center gap-4 text-gray-400 text-xs mb-4">
-                        <div className="flex items-center gap-1">
-                          <Calendar size={12} />
-                          <span>{formatDisplayDate(post.published_at)}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <User size={12} />
-                          <span>Austin</span>
-                        </div>
-                        <span>{post.read_time}</span>
-                      </div>
-
-                      <Link
-                        to={`/insights/${post.slug}`}
-                        className="inline-flex items-center gap-2 text-crimson-400 text-sm font-semibold hover:text-crimson-500 transition-colors"
-                      >
-                        Read Article <ArrowRight size={14} />
-                      </Link>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          {isLoading && (
+            <p className="font-arial text-gray-400 text-sm text-center py-12">Loading articles…</p>
           )}
+
+          {loadError && (
+            <p className="font-arial text-crimson-400 text-sm text-center py-12">{loadError}</p>
+          )}
+
+          {!isLoading && !loadError && articles.length === 0 && (
+            <p className="font-arial text-gray-400 text-sm text-center py-12">
+              New articles are on the way. Check back soon.
+            </p>
+          )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {articles.map((article) => {
+              const IconComponent = getIcon(article.icon);
+              return (
+                <div
+                  key={article.id}
+                  className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-navy-300 flex flex-col"
+                >
+                  {article.cover_image_url ? (
+                    <img
+                      src={article.cover_image_url}
+                      alt=""
+                      className="w-full h-40 object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-40 bg-navy-50 flex items-center justify-center">
+                      <IconComponent size={32} className="text-crimson-400" strokeWidth={1.5} />
+                    </div>
+                  )}
+
+                  <div className="p-6 flex flex-col flex-1">
+                    <span className="inline-block bg-navy-50 text-navy-500 text-xs font-semibold px-2 py-1 rounded mb-3 w-fit">
+                      {article.category}
+                    </span>
+
+                    <h3 className="font-garamond text-navy-500 text-xl font-bold mb-2">
+                      {article.title}
+                    </h3>
+
+                    <p className="font-arial text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="flex items-center gap-4 text-gray-400 text-xs mb-4">
+                      <div className="flex items-center gap-1">
+                        <Calendar size={12} />
+                        <span>{formatDate(article.published_at)}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <User size={12} />
+                        <span>{article.author.split(' ')[0]}</span>
+                      </div>
+                      <span>{article.read_time}</span>
+                    </div>
+
+                    <Link
+                      to={`/insights/${article.slug}`}
+                      className="inline-flex items-center gap-2 text-crimson-400 text-sm font-semibold hover:text-crimson-500 transition-colors"
+                    >
+                      Read Article <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
           {/* Subscribe Section */}
           <div className="mt-16 bg-navy-50 rounded-lg p-8 text-center">
@@ -143,4 +144,13 @@ export default function Insights() {
       </section>
     </div>
   );
+}
+
+function formatDate(iso: string | null): string {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
 }

@@ -1,34 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, User, Clock, Linkedin, Mail, Loader2 } from 'lucide-react';
-import { getPublishedPostBySlug, getIconForCategory, formatDisplayDate } from '../data/blogHelpers';
-import type { BlogPost } from '../lib/supabase';
+import { ArrowLeft, Calendar, User, Clock, Linkedin, Mail } from 'lucide-react';
+import { Shield, Search, FileCheck, TrendingUp } from 'lucide-react';
+import { getPublishedArticleBySlug, type Article as ArticleType } from '../lib/articles';
+
+const ICONS: Record<string, typeof Shield> = { Shield, Search, FileCheck, TrendingUp };
+const getIcon = (name: string) => ICONS[name] ?? Shield;
 
 export default function Article() {
   const { slug } = useParams();
-  const [article, setArticle] = useState<BlogPost | null>(null);
-  const [loading, setLoading] = useState(true);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
+  const [article, setArticle] = useState<ArticleType | null | undefined>(undefined);
+
   useEffect(() => {
-    if (!slug) {
-      setLoading(false);
-      return;
-    }
-    setLoading(true);
-    getPublishedPostBySlug(slug).then((post) => {
-      setArticle(post);
-      setLoading(false);
-    });
+    if (!slug) return;
+    getPublishedArticleBySlug(slug)
+      .then(setArticle)
+      .catch(() => setArticle(null));
   }, [slug]);
 
   // Update meta tags immediately when article loads
   useEffect(() => {
     if (article) {
-      // Update page title
       document.title = `${article.title} | Austin Phiri Advisory`;
-      
-      // Update or create meta description
+
       let metaDesc = document.querySelector('meta[name="description"]');
       if (!metaDesc) {
         metaDesc = document.createElement('meta');
@@ -36,8 +32,7 @@ export default function Article() {
         document.head.appendChild(metaDesc);
       }
       metaDesc.setAttribute('content', article.excerpt);
-      
-      // Update Open Graph title
+
       let ogTitle = document.querySelector('meta[property="og:title"]');
       if (!ogTitle) {
         ogTitle = document.createElement('meta');
@@ -45,8 +40,7 @@ export default function Article() {
         document.head.appendChild(ogTitle);
       }
       ogTitle.setAttribute('content', article.title);
-      
-      // Update Open Graph description
+
       let ogDesc = document.querySelector('meta[property="og:description"]');
       if (!ogDesc) {
         ogDesc = document.createElement('meta');
@@ -54,8 +48,7 @@ export default function Article() {
         document.head.appendChild(ogDesc);
       }
       ogDesc.setAttribute('content', article.excerpt);
-      
-      // Update Open Graph URL
+
       let ogUrl = document.querySelector('meta[property="og:url"]');
       if (!ogUrl) {
         ogUrl = document.createElement('meta');
@@ -63,15 +56,15 @@ export default function Article() {
         document.head.appendChild(ogUrl);
       }
       ogUrl.setAttribute('content', currentUrl);
-      
-      // Update Open Graph image — use the post's cover image if it has one,
-      // otherwise fall back to the site logo like before.
+
       let ogImage = document.querySelector('meta[property="og:image"]');
       if (!ogImage) {
         ogImage = document.createElement('meta');
         ogImage.setAttribute('property', 'og:image');
         document.head.appendChild(ogImage);
       }
+      // Use the post's own cover image when it has one, otherwise fall back
+      // to the site logo so shared links still show something on-brand.
       ogImage.setAttribute(
         'content',
         article.cover_image_url || 'https://austinphiriadvisory.pages.dev/APA-logo.png'
@@ -79,10 +72,10 @@ export default function Article() {
     }
   }, [article, currentUrl]);
 
-  if (loading) {
+  if (article === undefined) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="animate-spin text-navy-400" size={28} />
+        <p className="font-arial text-gray-400 text-sm">Loading…</p>
       </div>
     );
   }
@@ -97,9 +90,9 @@ export default function Article() {
       </div>
     );
   }
-  
-  const IconComponent = getIconForCategory(article.category);
-  
+
+  const IconComponent = getIcon(article.icon);
+
   return (
     <div>
       {/* Article Header */}
@@ -119,11 +112,11 @@ export default function Article() {
             <div className="flex flex-wrap items-center gap-4 text-navy-200 text-sm">
               <div className="flex items-center gap-1">
                 <Calendar size={14} />
-                <span>{formatDisplayDate(article.published_at)}</span>
+                <span>{formatDate(article.published_at)}</span>
               </div>
               <div className="flex items-center gap-1">
                 <User size={14} />
-                <span>Austin Precious Phiri</span>
+                <span>{article.author}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Clock size={14} />
@@ -134,42 +127,43 @@ export default function Article() {
         </div>
       </section>
 
+      {/* Cover image */}
       {article.cover_image_url && (
         <div className="bg-white">
-          <div className="container-main px-6 lg:px-20 -mt-8 md:-mt-10 relative z-10">
+          <div className="container-main px-6 lg:px-20 -mt-10 md:-mt-14 relative z-10">
             <img
               src={article.cover_image_url}
-              alt={article.title}
-              className="w-full max-h-[440px] object-cover rounded-lg shadow-lg"
+              alt=""
+              className="w-full max-h-[420px] object-cover rounded-lg shadow-lg"
             />
           </div>
         </div>
       )}
-      
+
       {/* Article Content */}
       <section className="bg-white py-16 md:py-24">
         <div className="container-main px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-3">
-              <div 
+              <div
                 className="prose prose-lg max-w-none font-arial text-gray-600 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: article.content }}
               />
-              
+
               {/* Share Section */}
               <div className="border-t border-gray-100 mt-8 pt-6">
                 <h4 className="font-arial text-sm font-semibold mb-3">Share this article</h4>
                 <div className="flex flex-wrap gap-3">
-                  <a 
+                  <a
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`}
-                    target="_blank" 
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="bg-[#0077b5] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm hover:bg-[#006699] transition-colors"
                   >
                     <Linkedin size={16} /> LinkedIn
                   </a>
-                  <a 
+                  <a
                     href={`mailto:?subject=${encodeURIComponent(article.title)}&body=${encodeURIComponent(currentUrl)}`}
                     className="bg-gray-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm hover:bg-gray-700 transition-colors"
                   >
@@ -178,7 +172,7 @@ export default function Article() {
                 </div>
               </div>
             </div>
-            
+
             {/* Sidebar - Author Bio */}
             <div className="lg:col-span-1">
               <div className="bg-gray-50 rounded-lg p-6 sticky top-28">
@@ -196,4 +190,13 @@ export default function Article() {
       </section>
     </div>
   );
+}
+
+function formatDate(iso: string | null): string {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
 }

@@ -53,7 +53,25 @@ export default {
         '88': '22rem',
         '128': '32rem',
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': theme('colors.gray.600'),
+            '--tw-prose-headings': theme('colors.navy.500'),
+            '--tw-prose-links': theme('colors.crimson.400'),
+            '--tw-prose-bold': theme('colors.navy.500'),
+            '--tw-prose-quotes': theme('colors.navy.400'),
+            '--tw-prose-quote-borders': theme('colors.crimson.200'),
+            fontFamily: theme('fontFamily.arial').join(', '),
+            h1: { fontFamily: theme('fontFamily.garamond').join(', ') },
+            h2: { fontFamily: theme('fontFamily.garamond').join(', ') },
+            h3: { fontFamily: theme('fontFamily.garamond').join(', ') },
+            h4: { fontFamily: theme('fontFamily.garamond').join(', ') },
+            img: { borderRadius: theme('borderRadius.lg') },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
