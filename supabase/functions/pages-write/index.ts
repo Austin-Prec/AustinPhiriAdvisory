@@ -6,7 +6,10 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
-const VALID_TYPES = new Set(["header", "photo", "bio", "list"]);
+const VALID_TYPES = new Set([
+  "header", "photo", "bio", "list", // About page blocks
+  "hero", "value_cards", "stat_bar", "link_preview", // Home page blocks
+]);
 
 interface BlockPayload {
   id?: string;

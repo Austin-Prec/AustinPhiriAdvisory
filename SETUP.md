@@ -56,6 +56,8 @@ need the last two now):
    editable page sections
 5. `20260703072342_seed_about_page_blocks.sql` — copies your current About page
    content in, so nothing is lost
+6. `20260703074807_seed_home_page_blocks.sql` — copies your current Home page
+   content in, so nothing is lost
 
 Just open each file, copy its contents, paste into the SQL Editor, and click Run.
 
@@ -74,7 +76,8 @@ supabase functions deploy pages-write
 (If you'd rather not use the CLI, you can also paste each function's `index.ts`
 into **Dashboard → Edge Functions → Create a new function** with the matching name.
 If you already deployed the first three for the blog, you only need `pages-write`
-now.)
+now — but if you deployed `pages-write` before for the About page, you need to
+**redeploy** it now, since it was updated to also support Home's block types.)
 
 ## 4. Create your login
 
@@ -91,9 +94,9 @@ For a blog post: click **New post**, try typing or pasting something in, draggin
 a photo into the text. Hit **Publish**, then check `/insights` — your post is there.
 
 For the page editor: click **Site pages** at the top of the dashboard, then
-**About**. Try editing the bio text, replacing the photo, or adding a
-certification. Hit **Save block**, then check `/about` on your live site — the
-change is there.
+**Home** or **About**. Try editing the bio text, replacing the photo, adjusting a
+stat number, or changing a button's destination. Hit **Save block**, then check
+the live page — the change is there.
 
 (You can also test locally first with `npm install` then `npm run dev`, using the
 `.env` file from Step 1 — useful for trying things out before they're live, but
@@ -115,12 +118,15 @@ the real target is the Cloudflare URL above.)
   those often; not urgent otherwise.
 - **Cover images are optional.** If you skip one, the post falls back to a simple
   icon tile on the Insights page, same as before.
-- **Only the About page is wired up so far.** Home, Frameworks, and Services will
-  follow the same pattern, each with its own block types suited to that page's
-  content — that's a separate piece of work.
-- **Block types are currently fixed** (header, photo, bio, list) — you can freely
-  add, remove, and reorder blocks of these kinds, but a genuinely new kind of
-  block (say, a video embed) still needs to be built by a developer once, after
-  which it becomes available to add anywhere like the others.
+- **Home and About are wired up so far.** Frameworks and Services will follow the
+  same pattern, each with its own block types suited to that page's content —
+  that's a separate piece of work.
+- **Block types are currently fixed** — About uses header/photo/bio/list, Home
+  uses hero/value_cards/stat_bar/link_preview. You can freely add, remove, and
+  reorder blocks of these kinds on their respective pages, but a genuinely new
+  kind of block (say, a video embed) still needs to be built by a developer once,
+  after which it becomes available to add anywhere like the others.
+- **Button and link destinations** on the Home page use a dropdown of your real
+  pages rather than free text, so a typo can never produce a broken link.
 - **Bold text in the bio editor:** select the words you want bold, then click the
   bold icon above that paragraph. No need to type any tags.

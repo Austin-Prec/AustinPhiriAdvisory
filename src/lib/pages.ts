@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 
-export type BlockType = 'header' | 'photo' | 'bio' | 'list';
+export type BlockType = 'header' | 'photo' | 'bio' | 'list' | 'hero' | 'value_cards' | 'stat_bar' | 'link_preview';
 
 export interface PageBlock {
   id: string;

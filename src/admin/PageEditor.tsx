@@ -11,6 +11,10 @@ import {
   List as ListIcon,
   Heading1,
   LogOut,
+  Sparkles,
+  LayoutGrid,
+  BarChart3,
+  ExternalLink,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import {
@@ -26,16 +30,25 @@ import HeaderBlockEditor from './blocks/HeaderBlockEditor';
 import PhotoBlockEditor from './blocks/PhotoBlockEditor';
 import BioBlockEditor from './blocks/BioBlockEditor';
 import ListBlockEditor from './blocks/ListBlockEditor';
+import HeroBlockEditor from './blocks/HeroBlockEditor';
+import ValueCardsBlockEditor from './blocks/ValueCardsBlockEditor';
+import StatBarBlockEditor from './blocks/StatBarBlockEditor';
+import LinkPreviewBlockEditor from './blocks/LinkPreviewBlockEditor';
 
 const PAGES = [
+  { key: 'home', label: 'Home' },
   { key: 'about', label: 'About' },
 ];
 
-const BLOCK_TYPE_INFO: Record<BlockType, { label: string; icon: typeof ImageIcon; defaultContent: Record<string, unknown> }> = {
-  header: { label: 'Header block', icon: Heading1, defaultContent: { title: '', intro: '' } },
-  photo: { label: 'Photo block', icon: ImageIcon, defaultContent: { image_url: '', alt: '', badges: [] } },
-  bio: { label: 'Bio block', icon: AlignLeft, defaultContent: { name: '', title: '', quote: '', paragraphs: [''], footnote: '' } },
-  list: { label: 'List block', icon: ListIcon, defaultContent: { title: '', icon: 'Award', items: [''], footnote: '' } },
+const BLOCK_TYPE_INFO: Record<BlockType, { label: string; icon: typeof ImageIcon; defaultContent: Record<string, unknown>; pages: string[] }> = {
+  header: { label: 'Header block', icon: Heading1, defaultContent: { title: '', intro: '' }, pages: ['about'] },
+  photo: { label: 'Photo block', icon: ImageIcon, defaultContent: { image_url: '', alt: '', badges: [] }, pages: ['about'] },
+  bio: { label: 'Bio block', icon: AlignLeft, defaultContent: { name: '', title: '', quote: '', paragraphs: [''], footnote: '' }, pages: ['about'] },
+  list: { label: 'List block', icon: ListIcon, defaultContent: { title: '', icon: 'Award', items: [''], footnote: '' }, pages: ['about'] },
+  hero: { label: 'Hero block', icon: Sparkles, defaultContent: { background_image_url: '', headline: '', subheadline: '', quote: '', buttons: [] }, pages: ['home'] },
+  value_cards: { label: 'Value cards block', icon: LayoutGrid, defaultContent: { title: '', subtitle: '', cards: [] }, pages: ['home'] },
+  stat_bar: { label: 'Stat bar block', icon: BarChart3, defaultContent: { label: '', stats: [] }, pages: ['home'] },
+  link_preview: { label: 'Link preview block', icon: ExternalLink, defaultContent: { title: '', body: '', link_text: '', link: '/about' }, pages: ['home'] },
 };
 
 export default function PageEditor() {
@@ -235,6 +248,30 @@ export default function PageEditor() {
                       onChange={(c) => handleContentChange(block.id, c)}
                     />
                   )}
+                  {block.type === 'hero' && (
+                    <HeroBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'value_cards' && (
+                    <ValueCardsBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'stat_bar' && (
+                    <StatBarBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'link_preview' && (
+                    <LinkPreviewBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
 
                   <button
                     onClick={() => handleSaveBlock(block)}
@@ -257,7 +294,9 @@ export default function PageEditor() {
 
               {showAddMenu && (
                 <div className="absolute left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10 overflow-hidden">
-                  {(Object.keys(BLOCK_TYPE_INFO) as BlockType[]).map((type) => {
+                  {(Object.keys(BLOCK_TYPE_INFO) as BlockType[])
+                    .filter((type) => BLOCK_TYPE_INFO[type].pages.includes(activePage))
+                    .map((type) => {
                     const info = BLOCK_TYPE_INFO[type];
                     const Icon = info.icon;
                     return (
