@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 interface BioBlockProps {
   content: {
     name?: string;
@@ -9,10 +11,34 @@ interface BioBlockProps {
 }
 
 export default function BioBlock({ content }: BioBlockProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="lg:col-span-2">
+    <div
+      ref={ref}
+      className={`lg:col-span-2 transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+    >
       {content.name && (
-        <h2 className="font-garamond text-navy-500 text-2xl font-bold mb-2">
+        <h2 className="font-garamond text-navy-500 text-2xl font-semibold mb-2">
           {content.name}
         </h2>
       )}
@@ -23,8 +49,13 @@ export default function BioBlock({ content }: BioBlockProps) {
       )}
 
       {content.quote && (
-        <div className="bg-navy-50 border-l-4 border-crimson-400 p-4 mb-6">
-          <p className="font-arial text-navy-700 text-sm italic leading-relaxed">
+        <div className="relative bg-navy-50 border-l-4 border-crimson-400 rounded-r-lg p-5 mb-6 overflow-hidden">
+          <div
+            className="pointer-events-none absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-[0.08]"
+            style={{ background: 'radial-gradient(circle, #1F3864, transparent 70%)' }}
+            aria-hidden="true"
+          />
+          <p className="relative font-arial text-navy-700 text-sm italic leading-relaxed">
             {content.quote}
           </p>
         </div>
@@ -32,9 +63,6 @@ export default function BioBlock({ content }: BioBlockProps) {
 
       <div className="space-y-4 font-arial text-gray-600 text-base leading-relaxed">
         {content.paragraphs?.map((p, i) => (
-          // Paragraphs may contain inline <strong> tags (e.g. highlighting a
-          // figure like "$300,000+ USD"), the same rich-content pattern used
-          // for blog post bodies elsewhere in the admin panel.
           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
         ))}
         {content.footnote && (

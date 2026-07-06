@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 interface PricingNotesBlockProps {
   content: {
     heading?: string;
@@ -7,21 +9,42 @@ interface PricingNotesBlockProps {
 }
 
 export default function PricingNotesBlock({ content }: PricingNotesBlockProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="bg-white pb-16 md:pb-24">
-      <div className="container-main px-6 lg:px-20">
-        <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+      <div
+        ref={ref}
+        className={`container-main px-6 lg:px-20 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}
+      >
+        <div className="rounded-xl p-6 bg-gray-50 border border-gray-200 transition-colors duration-300 hover:border-gray-300">
           {content.heading && (
-            <h4 className="font-garamond text-navy-500 text-lg font-bold mb-3">
+            <h4 className="font-garamond text-navy-500 text-lg font-semibold mb-3">
               {content.heading}
             </h4>
           )}
           <ul className="space-y-2 text-sm text-gray-600">
             {content.items?.map((item, i) => (
               <li key={i}>
-                {/* Items contain inline <strong> tags (e.g. highlighting
-                    "Fixed-price services"), the same rich-content pattern
-                    used for bio paragraphs on the About page. */}
                 • <span dangerouslySetInnerHTML={{ __html: item }} />
               </li>
             ))}
