@@ -4,6 +4,7 @@ import HeaderBlock from '../components/blocks/HeaderBlock';
 import PhotoBlock from '../components/blocks/PhotoBlock';
 import BioBlock from '../components/blocks/BioBlock';
 import ListBlock from '../components/blocks/ListBlock';
+import CredentialsPanelBlock from '../components/blocks/CredentialsPanelBlock';
 
 export default function About() {
   const [blocks, setBlocks] = useState<PageBlock[] | null>(null);
@@ -26,6 +27,7 @@ export default function About() {
   const photoBlock = blocks.find((b) => b.type === 'photo');
   const bioBlock = blocks.find((b) => b.type === 'bio');
   const listBlocks = blocks.filter((b) => b.type === 'list');
+  const credentialsPanelBlocks = blocks.filter((b) => b.type === 'credentials_panel');
 
   return (
     <div>
@@ -46,6 +48,10 @@ export default function About() {
 
       {listBlocks.map((block) => (
         <ListBlock key={block.id} content={block.content} />
+      ))}
+
+      {credentialsPanelBlocks.map((block) => (
+        <CredentialsPanelBlock key={block.id} content={block.content} />
       ))}
     </div>
   );

@@ -19,6 +19,7 @@ import {
   Megaphone,
   LayoutList,
   StickyNote,
+  BadgeCheck,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import {
@@ -34,6 +35,7 @@ import HeaderBlockEditor from './blocks/HeaderBlockEditor';
 import PhotoBlockEditor from './blocks/PhotoBlockEditor';
 import BioBlockEditor from './blocks/BioBlockEditor';
 import ListBlockEditor from './blocks/ListBlockEditor';
+import CredentialsPanelBlockEditor from './blocks/CredentialsPanelBlockEditor';
 import HeroBlockEditor from './blocks/HeroBlockEditor';
 import ValueCardsBlockEditor from './blocks/ValueCardsBlockEditor';
 import StatBarBlockEditor from './blocks/StatBarBlockEditor';
@@ -55,6 +57,7 @@ const BLOCK_TYPE_INFO: Record<BlockType, { label: string; icon: typeof ImageIcon
   photo: { label: 'Photo block', icon: ImageIcon, defaultContent: { image_url: '', alt: '', badges: [] }, pages: ['about'] },
   bio: { label: 'Bio block', icon: AlignLeft, defaultContent: { name: '', title: '', quote: '', paragraphs: [''], footnote: '' }, pages: ['about'] },
   list: { label: 'List block', icon: ListIcon, defaultContent: { title: '', icon: 'Award', items: [''], footnote: '' }, pages: ['about'] },
+  credentials_panel: { label: 'Credentials panel block', icon: BadgeCheck, defaultContent: { panels: [] }, pages: ['about'] },
   hero: { label: 'Hero block', icon: Sparkles, defaultContent: { background_image_url: '', headline: '', subheadline: '', quote: '', buttons: [] }, pages: ['home'] },
   value_cards: { label: 'Value cards block', icon: LayoutGrid, defaultContent: { title: '', subtitle: '', cards: [] }, pages: ['home'] },
   stat_bar: { label: 'Stat bar block', icon: BarChart3, defaultContent: { label: '', stats: [] }, pages: ['home'] },
@@ -258,6 +261,12 @@ export default function PageEditor() {
                   )}
                   {block.type === 'list' && (
                     <ListBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'credentials_panel' && (
+                    <CredentialsPanelBlockEditor
                       content={block.content}
                       onChange={(c) => handleContentChange(block.id, c)}
                     />

@@ -58,6 +58,12 @@ need the last two now):
    content in, so nothing is lost
 6. `20260703074807_seed_home_page_blocks.sql` — copies your current Home page
    content in, so nothing is lost
+7. `20260704081159_seed_frameworks_page_blocks.sql` — copies your current
+   Frameworks page content in, so nothing is lost
+8. `20260704111843_seed_services_page_blocks.sql` — copies your current
+   Services page content in, so nothing is lost
+9. `20260706035534_move_registration_to_about.sql` — adds your Legal Registration
+   and UN & Procurement details to the About page (moved from the Footer)
 
 Just open each file, copy its contents, paste into the SQL Editor, and click Run.
 
@@ -76,8 +82,9 @@ supabase functions deploy pages-write
 (If you'd rather not use the CLI, you can also paste each function's `index.ts`
 into **Dashboard → Edge Functions → Create a new function** with the matching name.
 If you already deployed the first three for the blog, you only need `pages-write`
-now — but if you deployed `pages-write` before for the About page, you need to
-**redeploy** it now, since it was updated to also support Home's block types.)
+now — but if you've deployed `pages-write` before, always **redeploy** it after
+running new migrations, since each new page feature has extended what block
+types it understands.)
 
 ## 4. Create your login
 
