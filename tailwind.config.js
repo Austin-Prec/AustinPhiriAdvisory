@@ -46,7 +46,7 @@ export default {
       },
       fontFamily: {
         garamond: ['Garamond', 'EB Garamond', 'Georgia', 'serif'],
-        arial: ['Arial', 'Helvetica', 'sans-serif'],
+        arial: ['Inter', 'Arial', 'Helvetica', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',

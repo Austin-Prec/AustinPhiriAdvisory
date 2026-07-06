@@ -15,6 +15,10 @@ import {
   LayoutGrid,
   BarChart3,
   ExternalLink,
+  Layers,
+  Megaphone,
+  LayoutList,
+  StickyNote,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import {
@@ -34,14 +38,20 @@ import HeroBlockEditor from './blocks/HeroBlockEditor';
 import ValueCardsBlockEditor from './blocks/ValueCardsBlockEditor';
 import StatBarBlockEditor from './blocks/StatBarBlockEditor';
 import LinkPreviewBlockEditor from './blocks/LinkPreviewBlockEditor';
+import FrameworkSectionBlockEditor from './blocks/FrameworkSectionBlockEditor';
+import CtaBannerBlockEditor from './blocks/CtaBannerBlockEditor';
+import ServiceGridBlockEditor from './blocks/ServiceGridBlockEditor';
+import PricingNotesBlockEditor from './blocks/PricingNotesBlockEditor';
 
 const PAGES = [
   { key: 'home', label: 'Home' },
   { key: 'about', label: 'About' },
+  { key: 'frameworks', label: 'Frameworks' },
+  { key: 'services', label: 'Services' },
 ];
 
 const BLOCK_TYPE_INFO: Record<BlockType, { label: string; icon: typeof ImageIcon; defaultContent: Record<string, unknown>; pages: string[] }> = {
-  header: { label: 'Header block', icon: Heading1, defaultContent: { title: '', intro: '' }, pages: ['about'] },
+  header: { label: 'Header block', icon: Heading1, defaultContent: { title: '', intro: '' }, pages: ['about', 'frameworks', 'services'] },
   photo: { label: 'Photo block', icon: ImageIcon, defaultContent: { image_url: '', alt: '', badges: [] }, pages: ['about'] },
   bio: { label: 'Bio block', icon: AlignLeft, defaultContent: { name: '', title: '', quote: '', paragraphs: [''], footnote: '' }, pages: ['about'] },
   list: { label: 'List block', icon: ListIcon, defaultContent: { title: '', icon: 'Award', items: [''], footnote: '' }, pages: ['about'] },
@@ -49,6 +59,10 @@ const BLOCK_TYPE_INFO: Record<BlockType, { label: string; icon: typeof ImageIcon
   value_cards: { label: 'Value cards block', icon: LayoutGrid, defaultContent: { title: '', subtitle: '', cards: [] }, pages: ['home'] },
   stat_bar: { label: 'Stat bar block', icon: BarChart3, defaultContent: { label: '', stats: [] }, pages: ['home'] },
   link_preview: { label: 'Link preview block', icon: ExternalLink, defaultContent: { title: '', body: '', link_text: '', link: '/about' }, pages: ['home'] },
+  framework_section: { label: 'Framework section block', icon: Layers, defaultContent: { icon: 'Shield', heading: '', subtitle: '', body: '', pillars: [], download_label: '', download_url: '', variant: 'light' }, pages: ['frameworks'] },
+  cta_banner: { label: 'CTA banner block', icon: Megaphone, defaultContent: { body: '', button_label: '', button_link: '/contact' }, pages: ['frameworks'] },
+  service_grid: { label: 'Service grid block', icon: LayoutList, defaultContent: { services: [] }, pages: ['services'] },
+  pricing_notes: { label: 'Pricing notes block', icon: StickyNote, defaultContent: { heading: '📌 Pricing Notes', items: [], framework_note: '' }, pages: ['services'] },
 };
 
 export default function PageEditor() {
@@ -268,6 +282,30 @@ export default function PageEditor() {
                   )}
                   {block.type === 'link_preview' && (
                     <LinkPreviewBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'framework_section' && (
+                    <FrameworkSectionBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'cta_banner' && (
+                    <CtaBannerBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'service_grid' && (
+                    <ServiceGridBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'pricing_notes' && (
+                    <PricingNotesBlockEditor
                       content={block.content}
                       onChange={(c) => handleContentChange(block.id, c)}
                     />

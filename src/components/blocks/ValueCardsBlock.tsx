@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Shield, Search, FileCheck, TrendingUp } from 'lucide-react';
 
 const ICONS: Record<string, typeof Shield> = { Shield, Search, FileCheck, TrendingUp };
@@ -18,11 +19,20 @@ interface ValueCardsBlockProps {
 
 export default function ValueCardsBlock({ content }: ValueCardsBlockProps) {
   return (
-    <section className="bg-white section-padding">
-      <div className="container-main">
-        <div className="text-center mb-12">
+    <section className="relative bg-white section-padding overflow-hidden">
+      {/* A very faint radial glow anchored top-center, giving the white
+          section a touch of the same warmth as the hero's gold blob,
+          without needing a dark background for it to read correctly. */}
+      <div
+        className="pointer-events-none absolute -top-1/2 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full opacity-[0.04]"
+        style={{ background: 'radial-gradient(circle, #D4A94F, transparent 70%)' }}
+        aria-hidden="true"
+      />
+
+      <div className="relative container-main">
+        <div className="text-center mb-14">
           {content.title && (
-            <h2 className="font-garamond text-navy-500 text-2xl md:text-3xl font-bold mb-3">
+            <h2 className="font-garamond text-navy-500 text-3xl md:text-4xl font-semibold mb-3">
               {content.title}
             </h2>
           )}
@@ -32,26 +42,63 @@ export default function ValueCardsBlock({ content }: ValueCardsBlockProps) {
             </p>
           )}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {content.cards?.map((card, i) => {
-            const IconComponent = ICONS[card.icon] || Shield;
-            return (
-              <div
-                key={i}
-                className="border border-gray-200 p-8 lg:p-10 hover:border-navy-300 transition-colors duration-300"
-              >
-                <IconComponent size={32} className="text-crimson-400 mb-5" strokeWidth={1.5} />
-                <h3 className="font-garamond text-navy-500 text-xl font-bold mb-3">
-                  {card.title}
-                </h3>
-                <p className="font-arial text-gray-600 text-sm leading-relaxed">
-                  {card.description}
-                </p>
-              </div>
-            );
-          })}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {content.cards?.map((card, i) => (
+            <ValueCard key={i} card={card} index={i} />
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function ValueCard({ card, index }: { card: ValueCard; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const IconComponent = ICONS[card.icon] || Shield;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`group relative rounded-2xl border border-gray-200 bg-white p-8 lg:p-9 transition-all duration-500 hover:-translate-y-2 hover:border-transparent hover:shadow-[0_20px_50px_-12px_rgba(31,56,100,0.25)] ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+      style={{ transitionDelay: isVisible ? `${index * 100}ms` : '0ms' }}
+    >
+      {/* A thin gradient top border that only appears on hover, giving each
+          card a moment of focused color without adding a permanent colored
+          border to every card at rest. */}
+      <div className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-gold-200 via-crimson-300 to-gold-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <div className="w-14 h-14 rounded-xl bg-crimson-50 flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-crimson-100">
+        <IconComponent size={26} className="text-crimson-400" strokeWidth={1.75} />
+      </div>
+
+      <h3 className="font-garamond text-navy-500 text-xl font-semibold mb-3">
+        {card.title}
+      </h3>
+      <p className="font-arial text-gray-600 text-sm leading-relaxed">
+        {card.description}
+      </p>
+    </div>
   );
 }

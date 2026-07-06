@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
@@ -11,12 +12,42 @@ interface LinkPreviewBlockProps {
 }
 
 export default function LinkPreviewBlock({ content }: LinkPreviewBlockProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="bg-gray-50 section-padding">
-      <div className="container-main px-6 lg:px-20">
+    <section className="relative bg-gray-50 section-padding overflow-hidden">
+      <div
+        className="pointer-events-none absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-[0.05] -translate-y-1/3 translate-x-1/3"
+        style={{ background: 'radial-gradient(circle, #1F3864, transparent 70%)' }}
+        aria-hidden="true"
+      />
+
+      <div
+        ref={ref}
+        className={`relative container-main px-6 lg:px-20 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}
+      >
         <div className="max-w-3xl">
           {content.title && (
-            <h2 className="font-garamond text-navy-500 text-2xl md:text-3xl font-bold mb-6">
+            <h2 className="font-garamond text-navy-500 text-2xl md:text-3xl font-semibold mb-6">
               {content.title}
             </h2>
           )}
@@ -28,9 +59,10 @@ export default function LinkPreviewBlock({ content }: LinkPreviewBlockProps) {
           {content.link && content.link_text && (
             <Link
               to={content.link}
-              className="inline-flex items-center gap-2 font-arial text-crimson-400 text-sm font-semibold uppercase tracking-wide hover:text-crimson-500 transition-colors duration-200"
+              className="group inline-flex items-center gap-2 font-arial text-crimson-400 text-sm font-semibold uppercase tracking-wide transition-colors duration-200 hover:text-crimson-500"
             >
-              {content.link_text} <ArrowRight size={16} />
+              {content.link_text}
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
           )}
         </div>
