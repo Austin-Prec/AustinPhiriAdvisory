@@ -142,7 +142,7 @@ function PillarCard({
   return (
     <div
       ref={ref}
-      className={`rounded-xl border border-gray-200 bg-white p-6 lg:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-navy-300 hover:shadow-[0_16px_40px_-12px_rgba(31,56,100,0.2)] ${
+      className={`rounded-xl border border-gray-200 bg-white p-6 lg:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_30px_60px_-15px_rgba(31,56,100,0.3),inset_0_1px_0_rgba(255,255,255,0.6)] ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{ transitionDelay: isVisible ? `${index * 80}ms` : '0ms' }}

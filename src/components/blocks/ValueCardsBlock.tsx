@@ -20,11 +20,13 @@ interface ValueCardsBlockProps {
 export default function ValueCardsBlock({ content }: ValueCardsBlockProps) {
   return (
     <section className="relative bg-white section-padding overflow-hidden">
-      {/* A very faint radial glow anchored top-center, giving the white
-          section a touch of the same warmth as the hero's gold blob,
-          without needing a dark background for it to read correctly. */}
+      {/* A softer, larger radial glow than before, echoing the hero's
+          top-right anchored gradient rather than a centered blob — this is
+          the deep-glass language's actual signature (a light source from
+          one corner) carried onto a white surface where true glass/blur
+          wouldn't read correctly against a flat background. */}
       <div
-        className="pointer-events-none absolute -top-1/2 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full opacity-[0.04]"
+        className="pointer-events-none absolute -top-1/3 -right-1/4 w-[800px] h-[800px] rounded-full opacity-[0.05]"
         style={{ background: 'radial-gradient(circle, #D4A94F, transparent 70%)' }}
         aria-hidden="true"
       />
@@ -79,17 +81,18 @@ function ValueCard({ card, index }: { card: ValueCard; index: number }) {
   return (
     <div
       ref={ref}
-      className={`group relative rounded-2xl border border-gray-200 bg-white p-8 lg:p-9 transition-all duration-500 hover:-translate-y-2 hover:border-transparent hover:shadow-[0_20px_50px_-12px_rgba(31,56,100,0.25)] ${
+      className={`group relative rounded-[20px] border border-gray-200 bg-white p-8 lg:p-9 transition-all duration-500 hover:-translate-y-2.5 hover:border-transparent hover:shadow-[0_30px_60px_-12px_rgba(31,56,100,0.3),inset_0_1px_0_rgba(255,255,255,0.6)] ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{ transitionDelay: isVisible ? `${index * 100}ms` : '0ms' }}
     >
-      {/* A thin gradient top border that only appears on hover, giving each
-          card a moment of focused color without adding a permanent colored
-          border to every card at rest. */}
-      <div className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-gold-200 via-crimson-300 to-gold-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* A thin gradient top border that only appears on hover */}
+      <div className="absolute inset-x-0 top-0 h-[3px] rounded-t-[20px] bg-gradient-to-r from-gold-200 via-crimson-300 to-gold-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      <div className="w-14 h-14 rounded-xl bg-crimson-50 flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-crimson-100">
+      <div
+        className="w-14 h-14 rounded-2xl bg-crimson-50 flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-crimson-100 group-hover:scale-110"
+        style={{ boxShadow: '0 1px 0 rgba(255,255,255,0.8) inset' }}
+      >
         <IconComponent size={26} className="text-crimson-400" strokeWidth={1.75} />
       </div>
 

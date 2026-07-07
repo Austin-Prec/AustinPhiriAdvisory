@@ -30,8 +30,17 @@ function parseStatValue(value: string): { prefix: string; number: number; suffix
 
 export default function StatBarBlock({ content }: StatBarBlockProps) {
   return (
-    <section className="relative bg-gradient-to-br from-navy-600 via-navy-500 to-navy-600 py-14 md:py-20 overflow-hidden">
-      <div className="absolute inset-0 animate-grid-drift opacity-60" aria-hidden="true" />
+    <section
+      className="relative py-16 md:py-24 overflow-hidden"
+      style={{
+        background: 'radial-gradient(ellipse at top right, #2D4A7A 0%, #1F3864 45%, #13223A 100%)',
+      }}
+    >
+      <div
+        className="absolute -top-32 -right-20 w-[450px] h-[450px] rounded-full blur-[80px] opacity-40"
+        style={{ background: 'radial-gradient(circle, rgba(212,169,79,0.35), transparent 70%)' }}
+        aria-hidden="true"
+      />
 
       <div className="relative container-main px-6 lg:px-20">
         {content.label && (
@@ -41,7 +50,7 @@ export default function StatBarBlock({ content }: StatBarBlockProps) {
             </p>
           </div>
         )}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
           {content.stats?.map((stat, i) => (
             <StatItem key={i} stat={stat} index={i} />
           ))}
@@ -94,7 +103,10 @@ function StatItem({ stat, index }: { stat: Stat; index: number }) {
   }, [stat.value]);
 
   return (
-    <div ref={ref} className="text-center">
+    <div
+      ref={ref}
+      className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md px-5 py-6 text-center transition-all duration-300 hover:bg-white/[0.07] hover:border-white/20 hover:-translate-y-1"
+    >
       <div
         className="font-garamond text-gold-200 text-3xl md:text-4xl font-semibold mb-1 tabular-nums animate-fade-up"
         style={{ animationDelay: `${index * 100}ms` }}

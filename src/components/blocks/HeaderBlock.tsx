@@ -20,8 +20,17 @@ export default function HeaderBlock({ content }: HeaderBlockProps) {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-br from-navy-500 via-navy-400 to-navy-500 pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden">
-      <div className="absolute inset-0 animate-grid-drift opacity-50" aria-hidden="true" />
+    <section
+      className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden"
+      style={{
+        background: 'radial-gradient(ellipse at top right, #2D4A7A 0%, #1F3864 45%, #13223A 100%)',
+      }}
+    >
+      <div
+        className="absolute -top-24 -right-16 w-[400px] h-[400px] rounded-full blur-[70px] opacity-30"
+        style={{ background: 'radial-gradient(circle, rgba(212,169,79,0.35), transparent 70%)' }}
+        aria-hidden="true"
+      />
 
       <div
         ref={ref}

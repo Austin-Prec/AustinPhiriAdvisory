@@ -30,8 +30,17 @@ export default function CtaBannerBlock({ content }: CtaBannerProps) {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-br from-navy-600 via-navy-500 to-navy-600 py-14 md:py-20 overflow-hidden">
-      <div className="absolute inset-0 animate-grid-drift opacity-50" aria-hidden="true" />
+    <section
+      className="relative py-14 md:py-20 overflow-hidden"
+      style={{
+        background: 'radial-gradient(ellipse at top right, #2D4A7A 0%, #1F3864 45%, #13223A 100%)',
+      }}
+    >
+      <div
+        className="absolute -top-32 -right-24 w-[450px] h-[450px] rounded-full blur-[80px] opacity-35"
+        style={{ background: 'radial-gradient(circle, rgba(212,169,79,0.35), transparent 70%)' }}
+        aria-hidden="true"
+      />
 
       <div
         ref={ref}
@@ -47,7 +56,7 @@ export default function CtaBannerBlock({ content }: CtaBannerProps) {
         {content.button_link && content.button_label && (
           <Link
             to={content.button_link}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-gold-200 to-gold-300 px-8 py-4 font-arial text-[15px] font-bold text-navy-600 shadow-[0_8px_24px_rgba(212,169,79,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(212,169,79,0.5)]"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-gold-100 to-gold-200 px-8 py-4 font-arial text-[15px] font-bold text-navy-600 shadow-[0_8px_24px_rgba(212,169,79,0.35),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(212,169,79,0.5),inset_0_1px_0_rgba(255,255,255,0.4)]"
           >
             {content.button_label}
           </Link>

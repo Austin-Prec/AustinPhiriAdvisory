@@ -34,7 +34,7 @@ export default function LinkPreviewBlock({ content }: LinkPreviewBlockProps) {
   return (
     <section className="relative bg-gray-50 section-padding overflow-hidden">
       <div
-        className="pointer-events-none absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-[0.05] -translate-y-1/3 translate-x-1/3"
+        className="pointer-events-none absolute -top-1/4 -right-1/6 w-[600px] h-[600px] rounded-full opacity-[0.06]"
         style={{ background: 'radial-gradient(circle, #1F3864, transparent 70%)' }}
         aria-hidden="true"
       />
@@ -45,7 +45,7 @@ export default function LinkPreviewBlock({ content }: LinkPreviewBlockProps) {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
       >
-        <div className="max-w-3xl">
+        <div className="max-w-3xl rounded-[24px] bg-white/60 backdrop-blur-sm border border-white/80 p-8 md:p-10 shadow-[0_20px_50px_-20px_rgba(31,56,100,0.15)]">
           {content.title && (
             <h2 className="font-garamond text-navy-500 text-2xl md:text-3xl font-semibold mb-6">
               {content.title}

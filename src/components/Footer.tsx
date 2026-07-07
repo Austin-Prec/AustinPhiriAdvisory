@@ -23,8 +23,18 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={ref} className="relative bg-navy-700 text-navy-100 overflow-hidden">
-      <div className="absolute inset-0 animate-grid-drift opacity-40" aria-hidden="true" />
+    <footer
+      ref={ref}
+      className="relative text-navy-100 overflow-hidden"
+      style={{
+        background: 'radial-gradient(ellipse at top right, #192D4F 0%, #13223A 45%, #0D1726 100%)',
+      }}
+    >
+      <div
+        className="absolute -top-40 -right-24 w-[500px] h-[500px] rounded-full blur-[90px] opacity-25"
+        style={{ background: 'radial-gradient(circle, rgba(212,169,79,0.35), transparent 70%)' }}
+        aria-hidden="true"
+      />
 
       <div
         className={`relative container-main section-padding pb-8 transition-opacity duration-700 ${
@@ -34,23 +44,23 @@ export default function Footer() {
 
         {/* Trust Badges Section */}
         <div className="border-b border-navy-600 pb-8 mb-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="group transition-transform duration-300 hover:-translate-y-1">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="group rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md px-4 py-5 text-center transition-all duration-300 hover:bg-white/[0.07] hover:border-white/20 hover:-translate-y-1">
               <Shield size={28} className="text-gold-200 mx-auto mb-2 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.2} />
               <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Registered</p>
               <p className="font-arial text-white text-sm font-medium">Malawi</p>
             </div>
-            <div className="group transition-transform duration-300 hover:-translate-y-1">
+            <div className="group rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md px-4 py-5 text-center transition-all duration-300 hover:bg-white/[0.07] hover:border-white/20 hover:-translate-y-1">
               <Award size={28} className="text-gold-200 mx-auto mb-2 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.2} />
               <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Experience</p>
               <p className="font-arial text-white text-sm font-medium">12+ Years</p>
             </div>
-            <div className="group transition-transform duration-300 hover:-translate-y-1">
+            <div className="group rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md px-4 py-5 text-center transition-all duration-300 hover:bg-white/[0.07] hover:border-white/20 hover:-translate-y-1">
               <Users size={28} className="text-gold-200 mx-auto mb-2 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.2} />
               <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Donors & Clients</p>
               <p className="font-arial text-white text-sm font-medium">9+ International</p>
             </div>
-            <div className="group transition-transform duration-300 hover:-translate-y-1">
+            <div className="group rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md px-4 py-5 text-center transition-all duration-300 hover:bg-white/[0.07] hover:border-white/20 hover:-translate-y-1">
               <FileCheck size={28} className="text-gold-200 mx-auto mb-2 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.2} />
               <p className="font-arial text-navy-200 text-xs uppercase tracking-wider">Audit Findings</p>
               <p className="font-arial text-white text-sm font-medium">Zero Negative</p>

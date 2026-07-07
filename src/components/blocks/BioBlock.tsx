@@ -49,7 +49,7 @@ export default function BioBlock({ content }: BioBlockProps) {
       )}
 
       {content.quote && (
-        <div className="relative bg-navy-50 border-l-4 border-crimson-400 rounded-r-lg p-5 mb-6 overflow-hidden">
+        <div className="relative bg-navy-50 border-l-4 border-crimson-400 rounded-r-lg p-5 mb-6 overflow-hidden shadow-[0_10px_30px_-15px_rgba(31,56,100,0.25)]">
           <div
             className="pointer-events-none absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-[0.08]"
             style={{ background: 'radial-gradient(circle, #1F3864, transparent 70%)' }}
