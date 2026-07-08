@@ -64,6 +64,11 @@ need the last two now):
    Services page content in, so nothing is lost
 9. `20260706035534_move_registration_to_about.sql` — adds your Legal Registration
    and UN & Procurement details to the About page (moved from the Footer)
+10. `20260708051304_seed_contact_page_blocks.sql` — makes the Contact page's
+    header and sidebar editable (the form itself stays fixed, since it has
+    live submission logic)
+11. `20260708051814_seed_case_studies_page.sql` — creates the new Case Studies
+    page, seeded with 3 illustrative example engagements (see note below)
 
 Just open each file, copy its contents, paste into the SQL Editor, and click Run.
 
@@ -125,15 +130,21 @@ the real target is the Cloudflare URL above.)
   those often; not urgent otherwise.
 - **Cover images are optional.** If you skip one, the post falls back to a simple
   icon tile on the Insights page, same as before.
-- **Home and About are wired up so far.** Frameworks and Services will follow the
-  same pattern, each with its own block types suited to that page's content —
-  that's a separate piece of work.
-- **Block types are currently fixed** — About uses header/photo/bio/list, Home
-  uses hero/value_cards/stat_bar/link_preview. You can freely add, remove, and
-  reorder blocks of these kinds on their respective pages, but a genuinely new
-  kind of block (say, a video embed) still needs to be built by a developer once,
-  after which it becomes available to add anywhere like the others.
-- **Button and link destinations** on the Home page use a dropdown of your real
-  pages rather than free text, so a typo can never produce a broken link.
-- **Bold text in the bio editor:** select the words you want bold, then click the
-  bold icon above that paragraph. No need to type any tags.
+- **All pages are wired up now**: Home, About, Frameworks, Services, Contact,
+  and Case Studies all use the block editor system.
+- **The 3 seeded Case Studies are illustrative, not real client records.** They
+  were written to reflect your documented frameworks (SIF, FRF) and expertise,
+  since no verified individual engagement record was available to source them
+  from — not because any client details were withheld from an existing account.
+  Edit or replace them with real, anonymized engagement summaries under
+  **Site pages → Case Studies** whenever you have material you'd rather use.
+- **Block types are currently fixed** — each page uses a specific set suited to
+  its own content. You can freely add, remove, and reorder blocks of these
+  kinds on their respective pages, but a genuinely new kind of block (say, a
+  video embed) still needs to be built by a developer once, after which it
+  becomes available to add anywhere like the others.
+- **Button and link destinations** on Home, Frameworks, and Case Studies use a
+  dropdown of your real pages rather than free text, so a typo can never
+  produce a broken link.
+- **Bold text in the bio and pricing-notes editors:** select the words you want
+  bold, then click the bold icon above that field. No need to type any tags.

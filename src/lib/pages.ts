@@ -4,7 +4,9 @@ export type BlockType =
   | 'header' | 'photo' | 'bio' | 'list' | 'credentials_panel'
   | 'hero' | 'value_cards' | 'stat_bar' | 'link_preview'
   | 'framework_section' | 'cta_banner'
-  | 'service_grid' | 'pricing_notes';
+  | 'service_grid' | 'pricing_notes'
+  | 'contact_sidebar'
+  | 'case_study_grid';
 
 export interface PageBlock {
   id: string;

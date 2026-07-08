@@ -20,6 +20,8 @@ import {
   LayoutList,
   StickyNote,
   BadgeCheck,
+  Contact,
+  BookMarked,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import {
@@ -44,16 +46,20 @@ import FrameworkSectionBlockEditor from './blocks/FrameworkSectionBlockEditor';
 import CtaBannerBlockEditor from './blocks/CtaBannerBlockEditor';
 import ServiceGridBlockEditor from './blocks/ServiceGridBlockEditor';
 import PricingNotesBlockEditor from './blocks/PricingNotesBlockEditor';
+import ContactSidebarBlockEditor from './blocks/ContactSidebarBlockEditor';
+import CaseStudyGridBlockEditor from './blocks/CaseStudyGridBlockEditor';
 
 const PAGES = [
   { key: 'home', label: 'Home' },
   { key: 'about', label: 'About' },
   { key: 'frameworks', label: 'Frameworks' },
   { key: 'services', label: 'Services' },
+  { key: 'contact', label: 'Contact' },
+  { key: 'case-studies', label: 'Case Studies' },
 ];
 
 const BLOCK_TYPE_INFO: Record<BlockType, { label: string; icon: typeof ImageIcon; defaultContent: Record<string, unknown>; pages: string[] }> = {
-  header: { label: 'Header block', icon: Heading1, defaultContent: { title: '', intro: '' }, pages: ['about', 'frameworks', 'services'] },
+  header: { label: 'Header block', icon: Heading1, defaultContent: { title: '', intro: '' }, pages: ['about', 'frameworks', 'services', 'contact', 'case-studies'] },
   photo: { label: 'Photo block', icon: ImageIcon, defaultContent: { image_url: '', alt: '', badges: [] }, pages: ['about'] },
   bio: { label: 'Bio block', icon: AlignLeft, defaultContent: { name: '', title: '', quote: '', paragraphs: [''], footnote: '' }, pages: ['about'] },
   list: { label: 'List block', icon: ListIcon, defaultContent: { title: '', icon: 'Award', items: [''], footnote: '' }, pages: ['about'] },
@@ -66,6 +72,8 @@ const BLOCK_TYPE_INFO: Record<BlockType, { label: string; icon: typeof ImageIcon
   cta_banner: { label: 'CTA banner block', icon: Megaphone, defaultContent: { body: '', button_label: '', button_link: '/contact' }, pages: ['frameworks'] },
   service_grid: { label: 'Service grid block', icon: LayoutList, defaultContent: { services: [] }, pages: ['services'] },
   pricing_notes: { label: 'Pricing notes block', icon: StickyNote, defaultContent: { heading: '📌 Pricing Notes', items: [], framework_note: '' }, pages: ['services'] },
+  contact_sidebar: { label: 'Contact sidebar block', icon: Contact, defaultContent: { heading: 'Direct Contact', channels: [], response_time: '' }, pages: ['contact'] },
+  case_study_grid: { label: 'Case study grid block', icon: BookMarked, defaultContent: { intro_note: '', studies: [] }, pages: ['case-studies'] },
 };
 
 export default function PageEditor() {
@@ -315,6 +323,18 @@ export default function PageEditor() {
                   )}
                   {block.type === 'pricing_notes' && (
                     <PricingNotesBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'contact_sidebar' && (
+                    <ContactSidebarBlockEditor
+                      content={block.content}
+                      onChange={(c) => handleContentChange(block.id, c)}
+                    />
+                  )}
+                  {block.type === 'case_study_grid' && (
+                    <CaseStudyGridBlockEditor
                       content={block.content}
                       onChange={(c) => handleContentChange(block.id, c)}
                     />
